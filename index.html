@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachi Wallpaper</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="javascript/parallax.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Share+Tech+Mono'>
+</head>
+
+<body>
+    <div id="scene1">
+        <div class="layer" data-depth=".4">
+            <img class="sachi" src="images/color_tone_sachi.png" />
+        </div>
+    </div>
+    <div id="scene2">
+        <div class="layer" data-depth=".4">
+            <div id="clock">
+                <p class="date">{{ date }}</p>
+                <p class="time">{{ time }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="canvas-wrapper">
+        <canvas id="particleCanvas"></canvas>
+    </div>
+</body>
+<script src="javascript/wallpaperengine.js"></script>
+<script src='javascript/vue.min.js'></script>
+<script src="javascript/clock.js"></script>
+<script src="javascript/script.js"></script>
+<script>
+    var scene1 = document.getElementById("scene1");
+    var parallaxInstance1 = new Parallax(scene1);
+    var scene2 = document.getElementById("scene2");
+    var parallaxInstance2 = new Parallax(scene2);
+</script>
+
+</html>

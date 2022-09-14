@@ -1,0 +1,46 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover cover;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sachi {
+  position: absolute;
+  top: 80px;
+  left: 0px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#clock {
+  font-family: "Share Tech Mono", monospace;
+  color: #ffffff;
+  position: absolute;
+  top: 880px;
+  left: 1400px;
+  color: #daf6ff;
+  text-shadow: 0 0 30px #0aafe6, 0 0 30px rgba(10, 175, 230, 0);
+}
+
+#clock .time {
+  letter-spacing: 0.05em;
+  font-size: 80px;
+  padding: 5px 0;
+}
+#clock .date {
+  letter-spacing: 0.1em;
+  font-size: 24px;
+  padding: 5px 0;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
