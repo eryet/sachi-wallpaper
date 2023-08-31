@@ -1,23 +1,23 @@
-var clock = new Vue({
-  el: "#clock",
-  data: {
-    time: "",
-    date: "",
-  },
-});
+var clockElement = document.querySelector("#clock");
+var timeElement = document.querySelector(".time");
+var dateElement = document.querySelector(".date");
+
+// clockElement.appendChild(timeElement);
+// clockElement.appendChild(dateElement);
 
 var week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 var timerID = setInterval(updateTime, 1000);
 updateTime();
+
 function updateTime() {
   var cd = new Date();
-  clock.time =
+  timeElement.textContent =
     zeroPadding(cd.getHours(), 2) +
     ":" +
     zeroPadding(cd.getMinutes(), 2) +
     ":" +
     zeroPadding(cd.getSeconds(), 2);
-  clock.date =
+  dateElement.textContent =
     zeroPadding(cd.getFullYear(), 4) +
     "-" +
     zeroPadding(cd.getMonth() + 1, 2) +

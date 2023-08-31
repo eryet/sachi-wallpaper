@@ -1,4 +1,12 @@
+/* eslint-disable no-undef */
 // shooting start code
+
+// these variable were in wallpaperengine.js
+// starnumber
+// shootingstarnumber
+// starsize
+// shootingstarsize
+
 (function () {
   var requestAnimationFrame =
     window.requestAnimationFrame ||
@@ -22,19 +30,23 @@ background.height = height;
 bgCtx.fillStyle = "#05004c";
 bgCtx.fillRect(0, 0, width, height);
 
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 // stars
 function Star(options) {
-  this.size = Math.random() * 2;
-  this.speed = Math.random() * 0.1;
+  this.size = randomInRange(1, starsize);
+  this.speed = randomInRange(0.05, 0.1);
   this.x = options.x;
   this.y = options.y;
 }
 
 Star.prototype.reset = function () {
-  this.size = Math.random() * 2;
-  this.speed = Math.random() * 0.1;
+  this.size = randomInRange(1, starsize);
+  this.speed = randomInRange(0.05, 0.1);
   this.x = width;
-  this.y = Math.random() * height;
+  this.y = randomInRange(0, height);
 };
 
 Star.prototype.update = function () {
@@ -52,13 +64,13 @@ function ShootingStar() {
 
 // shooting star properties
 ShootingStar.prototype.reset = function () {
-  this.x = Math.random() * width;
+  this.x = randomInRange(0, width * 1.5);
   this.y = 0;
-  this.len = Math.random() * 80 + 10;
-  this.speed = Math.random() * 10 + 6;
-  this.size = Math.random() * 1 + 0.1;
+  this.len = randomInRange(10, shootingstarlength);
+  this.speed = randomInRange(6, 16);
+  this.size = randomInRange(0.5, shootingstarsize);
   // this is used so the shooting stars arent constant
-  this.waitTime = new Date().getTime() + Math.random() * 3000 + 500;
+  this.waitTime = Date.now() + randomInRange(500, 3500);
   this.active = false;
 };
 
@@ -88,7 +100,10 @@ var entities = [];
 function entitiesUpdate() {
   for (let i = 0; i < starnumber; i++) {
     entities.push(
-      new Star({ x: Math.random() * width, y: Math.random() * height })
+      new Star({
+        x: Math.random() * width,
+        y: Math.random() * height,
+      })
     );
   }
 
@@ -102,21 +117,23 @@ entitiesUpdate();
 
 // animate background
 // loop white dot and white line
+
 function animate() {
+  // init the stars
   //   var img = new Image();
   //   img.src = "../images/background.jpg";
   //   bgCtx.createPattern(img, "no-repeat");
-  // init the stars
   bgCtx.fillStyle = "#ffffff";
   bgCtx.strokeStyle = "#ffffff";
   bgCtx.clearRect(0, 0, width, height);
 
   var entLen = entities.length;
 
-  while (entLen--) {
-    entities[entLen].update();
+  for (let i = 0; i < entLen; i++) {
+    entities[i].update();
   }
 
   requestAnimationFrame(animate);
 }
+
 animate();

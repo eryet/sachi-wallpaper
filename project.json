@@ -1,6 +1,6 @@
 {
 	"contentrating" : "Everyone",
-	"description" : "A wallpaper with Sachi from SAO, made for Wallpaper Engine.Sachi Best Girl.Been wanting to make a wallpaper for Sachi since last year,finally have time to make it\n\nReport any issue on my steam workshop or github https://github.com/eryet/sachi-wallpaper\n\nUpdate #1\nAdd more customization to the wallpaper",
+	"description" : "A wallpaper with Sachi from SAO, made for Wallpaper Engine.Sachi Best Girl.Been wanting to make a wallpaper for Sachi since last year,finally have time to make it\n\nReport any issue on my steam workshop or github https://github.com/eryet/sachi-wallpaper\n\nUpdate #1\nAdd more customization to the wallpaper\n\nUpdate #2\nUpdate image quality\n\nUpdate #3\nPerfomance Update (2023/7)",
 	"file" : "index.html",
 	"general" : 
 	{
@@ -8,17 +8,17 @@
 		{
 			"clockcolor" : 
 			{
-				"index" : 4,
-				"order" : 104,
+				"index" : 7,
+				"order" : 107,
 				"text" : "<br />時間顏色<br />clock color<br />",
 				"type" : "color",
 				"value" : "1 1 1"
 			},
 			"rgbmode" : 
 			{
-				"index" : 2,
-				"order" : 102,
-				"text" : "<br />老婆 RGB 模式 <br />Waifu RGB Mode (for fun))<br />",
+				"index" : 5,
+				"order" : 105,
+				"text" : "<br />老婆 RGB 模式 <br />Waifu RGB Mode (for fun)<br />",
 				"type" : "bool",
 				"value" : false
 			},
@@ -29,16 +29,42 @@
 				"type" : "color",
 				"value" : "0.0392156862745098 0.6862745098039216 0.9019607843137255"
 			},
+			"shootingstarlength" : 
+			{
+				"fraction" : true,
+				"index" : 4,
+				"max" : 115,
+				"min" : 90,
+				"order" : 104,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "<br />流星MAX長度<br />Shooting Star Max Length<br />",
+				"type" : "slider",
+				"value" : 90
+			},
 			"shootingstarnumber" : 
 			{
 				"fraction" : false,
-				"index" : 1,
+				"index" : 2,
 				"max" : 50,
 				"min" : 0,
-				"order" : 101,
+				"order" : 102,
 				"text" : "<br />流星<br />Shooting Star<br />",
 				"type" : "slider",
 				"value" : 5
+			},
+			"shootingstarsize" : 
+			{
+				"fraction" : true,
+				"index" : 3,
+				"max" : 5,
+				"min" : 1,
+				"order" : 103,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "<br />流星MAX大小<br />Shooting Star Max Size<br />",
+				"type" : "slider",
+				"value" : 3.5
 			},
 			"starnumber" : 
 			{
@@ -51,29 +77,44 @@
 				"type" : "slider",
 				"value" : 1000
 			},
+			"starsize" : 
+			{
+				"fraction" : true,
+				"index" : 1,
+				"max" : 7,
+				"min" : 2,
+				"order" : 101,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "<br />星星MAX大小<br />Star Max Size<br />",
+				"type" : "slider",
+				"value" : 3
+			},
 			"textshadowcolor" : 
 			{
-				"index" : 5,
-				"order" : 105,
+				"index" : 8,
+				"order" : 108,
 				"text" : "<br />時間影子顏色<br />clock text-shadow color<br />",
 				"type" : "color",
 				"value" : "0.0392156862745098 0.6862745098039216 0.9019607843137255"
 			},
 			"waifuvisibility" : 
 			{
-				"index" : 3,
-				"order" : 103,
+				"index" : 6,
+				"order" : 106,
 				"text" : "<br />老婆去除<br />Waifu Remove<br />",
 				"type" : "bool",
 				"value" : false
 			}
 		}
 	},
-	"preview" : "preview.jpg",
+	"preview" : "preview.gif",
+	"snapshotformat" : 0,
+	"snapshotoverlay" : "",
 	"tags" : [ "Anime" ],
 	"title" : "Sachi-SAO ( 1920x1080 )",
 	"type" : "web",
-	"version" : 2,
+	"version" : 4,
 	"visibility" : "public",
 	"workshopid" : "2862882636",
 	"workshopurl" : "steam://url/CommunityFilePage/2862882636"
