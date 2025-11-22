@@ -7,8 +7,8 @@ html {
 body {
   background: url("../images/background.jpg");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
   z-index: 1;
 }
 
@@ -29,8 +29,9 @@ body {
 /* https://stackoverflow.com/questions/18815157/how-to-overlay-image-with-color-in-css */
 .sachi {
   position: absolute;
-  top: 80px;
-  left: 0px;
+  top: 200px;
+  left: 100px;
+  width: 100%;
 }
 
 .visibility {
@@ -46,8 +47,8 @@ p {
   font-family: "Share Tech Mono", monospace;
   color: #ffffff;
   position: absolute;
-  top: 880px;
-  left: 1400px;
+  bottom: -930px;
+  right: 50px;
   text-shadow: 0 0 35px #0aafe6;
 }
 
