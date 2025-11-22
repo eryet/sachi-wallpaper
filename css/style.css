@@ -29,6 +29,7 @@ body {
 /* https://stackoverflow.com/questions/18815157/how-to-overlay-image-with-color-in-css */
 .sachi {
   position: absolute;
+  /* 1512 x 982 resolution */
   top: 200px;
   left: 100px;
   width: 100%;
@@ -47,6 +48,7 @@ p {
   font-family: "Share Tech Mono", monospace;
   color: #ffffff;
   position: absolute;
+  /* 1512 x 982 resolution */
   bottom: -930px;
   right: 50px;
   text-shadow: 0 0 35px #0aafe6;
