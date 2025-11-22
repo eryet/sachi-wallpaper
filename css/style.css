@@ -2,6 +2,8 @@
 
 html {
   min-height: 100%;
+  overflow: hidden;
+  height: 100vh;
 }
 
 body {
@@ -9,6 +11,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
   z-index: 1;
 }
 
