@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-07",
+  "presetRevision": 4,
+  "fullLoopFrames": 40,
+  "blinkDetailFrames": 15,
+  "reviewWind": 1.5,
+  "dynamics": {
+    "hairTip": {
+      "before": {
+        "travel": 81.77559378583058,
+        "rmsAcceleration": 79.13969414121986
+      },
+      "after": {
+        "travel": 83.11922384419304,
+        "rmsAcceleration": 77.140111930957
+      }
+    },
+    "clothEdge": {
+      "before": {
+        "travel": 40.77926641315312,
+        "rmsAcceleration": 68.53386912955294
+      },
+      "after": {
+        "travel": 35.921410771182344,
+        "rmsAcceleration": 36.12353749382797
+      }
+    },
+    "shoulder": {
+      "before": {
+        "travel": 17.293212874066896,
+        "rmsAcceleration": 57.51425393507801
+      },
+      "after": {
+        "travel": 11.500333651156511,
+        "rmsAcceleration": 9.989116951911804
+      }
+    }
+  },
+  "checks": {
+    "previousDraftMigrated": true,
+    "customCenterFringePreserved": true,
+    "reviewedRightHairTracksPreserved": true,
+    "reducedStrengthFullBlink": true,
+    "speedRates": {
+      "1": 0.9999999999999432,
+      "0.25": 0.2499999999999858
+    },
+    "noPageErrors": true
+  }
+}

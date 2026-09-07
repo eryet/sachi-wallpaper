@@ -1,0 +1,26 @@
+{
+  "unique_ids": 87,
+  "artwork_layers": 52,
+  "source_visible_pixels": 540425,
+  "source_coverage": "100%",
+  "embedded_images": 0,
+  "comparisons": {
+    "dark": {
+      "mean_absolute_channel_error": 0.005736239711934156,
+      "max_channel_error": 2,
+      "psnr_db": 70.504,
+      "exact_pixel_fraction": 0.9915952932098765,
+      "visible_art_mean_absolute_channel_error": 0.022009837936192194,
+      "visible_art_exact_pixel_fraction": 0.9677513068418374
+    },
+    "white": {
+      "mean_absolute_channel_error": 0.0056275720164609055,
+      "max_channel_error": 2,
+      "psnr_db": 70.573,
+      "exact_pixel_fraction": 0.9917066936728395,
+      "visible_art_mean_absolute_channel_error": 0.021592882145225208,
+      "visible_art_exact_pixel_fraction": 0.9681787482074293
+    }
+  },
+  "max_alpha_error": 0
+}

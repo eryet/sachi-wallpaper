@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sachi — whole animation</title>
+  <style>
+    :root {color-scheme:dark;font:14px/1.5 system-ui,sans-serif;color:#e4edf8;background:#0c141f;}
+    * {box-sizing:border-box;}body {margin:0;}button,input,select {font:inherit;}
+    header {padding:20px 30px;border-bottom:1px solid #2a3749;display:flex;justify-content:space-between;align-items:center;gap:18px;}
+    h1 {font-weight:550;letter-spacing:-.7px;font-size:25px;margin:0;}header p {margin:4px 0 0;color:#96aac3;font-size:13px;}
+    a {color:#a4e4ef;text-decoration:none;}a:hover {text-decoration:underline;}
+    main {display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:calc(100vh - 101px);}
+    .workspace {padding:24px 28px;min-width:0;}
+    nav {display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    button {border:1px solid #35475e;color:#c4d5e9;background:#18263a;border-radius:7px;padding:9px 16px;cursor:pointer;}
+    button:hover {background:#263c56;}button[aria-pressed=true] {color:#142532;background:#9ae3ee;border-color:#9ae3ee;}
+    button:disabled {opacity:.4;cursor:wait;}
+    .speed-control {display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:13px 16px;margin-bottom:16px;border:1px solid #35475e;border-radius:9px;background:#111d2b;}
+    .speed-control label {min-width:155px;}.speed-control input {flex:1;min-width:120px;}
+    .speed-presets {display:flex;gap:5px;flex-wrap:wrap;}.speed-presets button {padding:6px 10px;font-size:12px;}
+    .scene {position:relative;overflow:hidden;height:calc(100vh - 345px);min-height:460px;max-height:970px;border:1px solid #324357;border-radius:14px;background:#162137;display:flex;align-items:center;justify-content:center;}
+    .scene.with-background {background:linear-gradient(#12203888,#12203888),url('images/background.jpg') center/cover;}
+    .scene canvas {height:100%;width:auto;max-width:100%;object-fit:contain;position:relative;}
+    .scene .label {position:absolute;top:16px;left:17px;z-index:1;color:#c8e9f0;background:#0d1b2abf;border:1px solid #52717e55;padding:6px 12px;border-radius:20px;font-size:11px;text-transform:uppercase;letter-spacing:1px;}
+    .transport {display:flex;gap:12px;align-items:center;margin-top:17px;}
+    .transport button {min-width:88px;}input[type=range] {accent-color:#9ae3ee;cursor:pointer;}
+    #timeline {flex:1;min-width:40px;}#time {font-size:12px;white-space:nowrap;color:#abc0d8;font-variant-numeric:tabular-nums;}
+    aside {padding:27px 25px;border-left:1px solid #2a3749;background:#111d2b;}
+    .eyebrow {font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#8ca8c7;margin:0 0 24px;}
+    fieldset {padding:0 0 22px;margin:0 0 23px;border:0;border-bottom:1px solid #2b3c50;}
+    legend {font-size:16px;margin-bottom:5px;padding:0;}legend span {font-size:11px;color:#84b5c4;margin-right:10px;}
+    fieldset p {font-size:12px;color:#97adc8;margin:2px 0 15px;}
+    label {display:block;font-size:12px;color:#b7cce1;}label output {float:right;color:#a3e5ee;font-variant-numeric:tabular-nums;}
+    fieldset input {width:100%;margin:12px 0 0;}.check {display:flex;align-items:center;gap:7px;margin:19px 0;color:#aec5dc;}
+    .full {width:100%;margin-top:12px;}.note {font-size:12px;color:#94aac4;line-height:1.65;margin:19px 0;}#status {font-size:12px;color:#a2c7d3;}
+    .gif-export {margin-top:26px;}.gif-export select {width:100%;padding:9px;margin:7px 0 14px;color:#e4edf8;background:#18263a;border:1px solid #35475e;border-radius:7px;}
+    .gif-export progress {width:100%;height:9px;margin-top:16px;accent-color:#9ae3ee;}.gif-export [hidden] {display:none;}
+    #gif-summary,#gif-status {font-size:12px;color:#a2c7d3;line-height:1.6;}#gif-download:not([hidden]) {display:block;margin-top:12px;}#export-gif {background:#9ae3ee;color:#142532;border-color:#9ae3ee;}
+    @media(max-width:900px) {main {grid-template-columns:1fr;}aside {border-left:0;border-top:1px solid #2a3749;} .scene {height:65vh;min-height:360px;}.workspace {padding:18px;}}
+    @media(max-width:480px) {header {padding:18px;}header a {font-size:12px;}h1 {font-size:22px;}nav {gap:5px;}nav button {padding:8px 10px;} .transport {gap:8px;}.transport button {min-width:auto;}#time {font-size:10px;}}
+  </style>
+</head>
+<body>
+  <header><div><h1>Sachi / whole animation</h1><p>Gusts sweep through the hair and fabric, then settle.</p></div><a href="index.html" target="_blank" rel="noopener">Open wallpaper ↗</a></header>
+  <main>
+    <section class="workspace">
+      <nav aria-label="Review a motion group">
+        <button data-stage="hair" aria-pressed="false" disabled>01 Hair</button>
+        <button data-stage="face" aria-pressed="false" disabled>02 Face</button>
+        <button data-stage="shirt" aria-pressed="false" disabled>03 Shirt</button>
+        <button data-stage="all" aria-pressed="true" disabled>Whole animation</button>
+      </nav>
+      <div class="speed-control" role="group" aria-label="Playback speed controls">
+        <label for="speed">Playback speed <output id="speed-value">1.00×</output></label>
+        <input id="speed" type="range" min="10" max="200" step="5" value="100" disabled>
+        <div class="speed-presets" role="group" aria-label="Speed presets">
+          <button data-speed="10" aria-pressed="false" disabled>0.1×</button>
+          <button data-speed="25" aria-pressed="false" disabled>0.25×</button>
+          <button data-speed="50" aria-pressed="false" disabled>0.5×</button>
+          <button data-speed="100" aria-pressed="true" disabled>1×</button>
+          <button data-speed="200" aria-pressed="false" disabled>2×</button>
+        </div>
+      </div>
+      <div id="scene" class="scene with-background"><span class="label" id="stage-label">Whole animation</span><canvas id="animation" aria-label="Animated Sachi illustration"></canvas></div>
+      <div class="transport"><button id="play" disabled>Pause</button><input id="timeline" aria-label="Loop position" type="range" min="0" max="20" step=".01" value="0" disabled><output id="time">0.0 / 20.0 s</output></div>
+    </section>
+    <aside>
+      <p class="eyebrow">Wind through the scene</p>
+      <fieldset><legend>Wind</legend><p>A strong sweep toward the left, with delayed flutter and a soft rebound.</p><label for="wind">Gust strength <output id="wind-value">100%</output></label><input id="wind" type="range" min="0" max="150" step="5" value="100" disabled><button id="review-gust" class="full" disabled>Replay strong gust</button></fieldset>
+      <fieldset><legend><span>01</span>Hair</legend><p>The fringe responds first; long locks bend and flutter behind it.</p><label for="hair">Movement <output id="hair-value">100%</output></label><input id="hair" type="range" min="0" max="150" step="5" value="100" disabled></fieldset>
+      <fieldset><legend><span>02</span>Facial features</legend><p>A curious head tilt, lifted brows, and a small nod with a blink before she settles.</p><label for="face">Movement <output id="face-value">100%</output></label><input id="face" type="range" min="0" max="150" step="5" value="100" disabled><button id="review-reaction" class="full" disabled>Review reaction at 0.5×</button><button id="review-blink" class="full" disabled>Review blink at 0.1×</button></fieldset>
+      <fieldset><legend><span>03</span>Shirt</legend><p>The wind lifts the collar and sends ripples through the sleeve and hem.</p><label for="shirt">Movement <output id="shirt-value">100%</output></label><input id="shirt" type="range" min="0" max="150" step="5" value="100" disabled></fieldset>
+      <label class="check"><input id="background" type="checkbox" checked> Show wallpaper background</label>
+      <button id="rest" class="full" disabled>Original rest pose</button>
+      <button id="export" class="full" disabled>Save motion settings</button>
+      <fieldset class="gif-export"><legend>Export GIF</legend>
+        <p>One full loop using the current motion group, movement settings, and playback speed.</p>
+        <label for="gif-preset">Export preset</label>
+        <select id="gif-preset" disabled><option value="compact">Compact · 360 px · up to 12 fps</option><option value="balanced" selected>Balanced · 640 px · up to 20 fps</option><option value="detailed">Detailed · 960 px · up to 25 fps</option></select>
+        <label for="gif-background">GIF background</label>
+        <select id="gif-background" disabled><option value="preview">Match preview</option><option value="transparent">Transparent</option></select>
+        <p id="gif-summary"></p><button id="export-gif" class="full" disabled>Export animation GIF</button>
+        <button id="cancel-gif" class="full" hidden>Cancel export</button>
+        <progress id="gif-progress" max="1" value="0" aria-label="GIF export progress" hidden></progress>
+        <p id="gif-status" role="status" aria-live="polite">Rendered locally in your browser.</p>
+        <a id="gif-download" hidden>Download GIF</a>
+      </fieldset>
+      <p class="note">Review the groups in order, then switch to the whole animation. Changes here affect this preview. The wallpaper has matching controls.</p>
+      <p class="note">The SVG stays editable. Playback uses cached layers for smooth movement; concealed areas are approximate.</p>
+      <p><a href="rig-editor.html">Open layer rig & loop editor ↗</a></p><p><a href="svg-preview.html">Edit individual SVG parts ↗</a></p><p id="status" role="status">Preparing animation…</p>
+    </aside>
+  </main>
+  <script src="images/sachi-animation/atlas.js"></script>
+  <script src="javascript/sachi-rig.js"></script>
+  <script src="javascript/sachi-wind.js"></script>
+  <script src="javascript/sachi-animation.js"></script>
+  <script src="javascript/vendor/gifenc.js"></script>
+  <script src="javascript/sachi-gif-codec.js"></script>
+  <script src="javascript/sachi-gif-export.js"></script>
+  <script>
+    const $=id=>document.getElementById(id);
+    let stage='all';const values={hair:1,face:1,shirt:1,wind:1,speed:1};
+    const player=new SachiAnimation.Player($('animation'),SachiAtlas);
+    window.sachiPreview=player;
+    function apply() {player.setOptions({...values,...Object.fromEntries(['hair','face','shirt'].map(key=>[key,stage==='all'||stage===key?values[key]:0]))});}
+    function transport() {$('play').textContent=player.playing?'Pause':'Play';}
+    let lastLabel=-1;
+    player.onframe=state=>{const stamp=Math.floor(state.time*10);if(stamp===lastLabel)return;lastLabel=stamp;$('timeline').value=state.time;$('time').textContent=state.time.toFixed(1)+' / 20.0 s';};
+    player.loaded.then(()=>{
+      player.setRig(SachiRig.preset(SachiAtlas));apply();
+      document.querySelectorAll('[disabled]').forEach(el=>el.disabled=false);
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!reduced)player.play();transport();
+      $('status').textContent=reduced?'Motion is paused to match reduced-motion preferences.':'Ready · a seamless 20-second loop.';
+    }).catch(error=>{$('status').textContent='Unable to load the animation layers: '+error.message;});
+    document.querySelectorAll('[data-stage]').forEach(button=>button.addEventListener('click',()=>{
+      stage=button.dataset.stage;document.querySelectorAll('[data-stage]').forEach(el=>el.setAttribute('aria-pressed',String(el===button)));
+      $('stage-label').textContent=stage==='all'?'Whole animation':button.textContent;apply();
+    }));
+    for(const key of Object.keys(values))$(key).addEventListener('input',()=>{
+      values[key]=Number($(key).value)/100;
+      $(key+'-value').textContent=key==='speed'?values[key].toFixed(2)+'×':$(key).value+'%';
+      if(key==='speed')document.querySelectorAll('[data-speed]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.speed)===Number($('speed').value))));
+      apply();
+    });
+    document.querySelectorAll('[data-speed]').forEach(button=>button.addEventListener('click',()=>{
+      $('speed').value=button.dataset.speed;$('speed').dispatchEvent(new Event('input',{bubbles:true}));
+    }));
+    $('review-blink').addEventListener('click',()=>{
+      document.querySelector('[data-stage="face"]').click();
+      if(values.face===0){$('face').value=100;$('face').dispatchEvent(new Event('input'));}
+      document.querySelector('[data-speed="10"]').click();
+      player.seek(3.7);player.play();transport();
+      $('status').textContent='Reviewing the next blink at 0.1×. Click again to replay it.';
+    });
+    $('review-reaction').addEventListener('click',()=>{
+      document.querySelector('[data-stage="all"]').click();
+      if(values.face===0){$('face').value=100;$('face').dispatchEvent(new Event('input'));}
+      document.querySelector('[data-speed="50"]').click();
+      player.seek(.8);player.play();transport();
+      $('status').textContent='Reviewing her tilt, blink, and nod at 0.5×.';
+    });
+    $('review-gust').addEventListener('click',()=>{
+      document.querySelector('[data-stage="all"]').click();
+      for(const key of ['hair','shirt','wind']){$(key).value=100;$(key).dispatchEvent(new Event('input'));}
+      document.querySelector('[data-speed="100"]').click();
+      player.seek(.4);player.play();transport();
+      $('status').textContent='Replaying a strong gust at 1×. Use the speed controls to inspect it slowly.';
+    });
+    $('play').addEventListener('click',()=>{if(player.playing)player.pause();else player.play();transport();});
+    $('rest').addEventListener('click',()=>{player.stop();lastLabel=-1;$('timeline').value=0;$('time').textContent='0.0 / 20.0 s';transport();$('status').textContent='Original rest pose. Press Play to resume.';});
+    $('timeline').addEventListener('input',()=>{player.pause();player.seek(Number($('timeline').value));transport();});
+    $('background').addEventListener('change',()=>$('scene').classList.toggle('with-background',$('background').checked));
+    $('export').addEventListener('click',()=>{
+      const url=URL.createObjectURL(new Blob([JSON.stringify({duration:SachiAnimation.DURATION,...values},null,2)],{type:'application/json'}));
+      const a=document.createElement('a');a.href=url;a.download='sachi-motion-settings.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
+    SachiGifExport.bindPreview(player,$('scene'));
+  </script>
+</body>
+</html>

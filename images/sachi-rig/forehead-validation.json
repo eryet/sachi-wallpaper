@@ -1,0 +1,83 @@
+{
+  "sourceSha256": "e6dd06acc7df51eb1256f8c1a3b214781ba46f625357fd53f61513bb19d59583",
+  "surfaces": {
+    "face": {
+      "sourceSwatches": [
+        [
+          170,
+          200
+        ],
+        [
+          160,
+          225
+        ],
+        [
+          175,
+          235
+        ],
+        [
+          245,
+          278
+        ],
+        [
+          270,
+          280
+        ],
+        [
+          310,
+          285
+        ],
+        [
+          360,
+          290
+        ],
+        [
+          400,
+          303
+        ]
+      ],
+      "maximumChannelError": 2,
+      "meanChannelError": 0.917
+    },
+    "hair": {
+      "sourceSwatches": [
+        [
+          240,
+          120
+        ],
+        [
+          280,
+          120
+        ],
+        [
+          320,
+          120
+        ],
+        [
+          370,
+          120
+        ],
+        [
+          405,
+          135
+        ],
+        [
+          250,
+          170
+        ],
+        [
+          300,
+          175
+        ]
+      ],
+      "maximumChannelError": 0,
+      "meanChannelError": 0.0
+    }
+  },
+  "foreheadFit": {
+    "cleanSkinSamples": 14821,
+    "holdoutSamples": 2116,
+    "holdoutMeanChannelError": 1.374,
+    "holdout95PercentChannelError": 3.899
+  }
+}

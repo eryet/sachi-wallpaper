@@ -16,7 +16,10 @@
 <body>
     <div id="scene1">
         <div class="layer" data-depth=".4">
-            <img id="sachi" class="sachi" src="images/sachi_ai_scale.png" />
+            <div id="sachi" class="sachi">
+                <img id="sachi-static" src="images/sachi_ai_scale.png" alt="Sachi" />
+                <canvas id="sachi-motion" width="1920" height="1080" aria-label="Sachi with windblown hair, blinking eyes, and flowing clothing" hidden></canvas>
+            </div>
         </div>
     </div>
     <div id="scene2">
@@ -31,6 +34,12 @@
         <canvas id="particleCanvas"></canvas>
     </div>
 </body>
+<script src="images/sachi-animation/atlas.js"></script>
+<script src="javascript/sachi-rig.js"></script>
+<script src="images/sachi-rig/project.js"></script>
+<script src="javascript/sachi-wind.js"></script>
+<script src="javascript/sachi-animation.js"></script>
+<script src="javascript/sachi-wallpaper.js"></script>
 <script src="javascript/wallpaperengine.js"></script>
 <script src="javascript/clock.js"></script>
 <script src="javascript/script.js"></script>

@@ -31,6 +31,21 @@ body {
   position: absolute;
   top: 80px;
   left: 0px;
+  width: 1920px;
+  height: 1080px;
+}
+
+.sachi img,
+.sachi canvas {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  z-index: auto;
+}
+
+.sachi [hidden] {
+  display: none;
 }
 
 .visibility {

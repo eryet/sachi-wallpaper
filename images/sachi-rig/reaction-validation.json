@@ -1,0 +1,15 @@
+{
+  "presetRevision": 5,
+  "reviewFrames": 8,
+  "mesh": {
+    "minimumAreaRatio": 0.1067139785665035,
+    "triangles": 1588572
+  },
+  "loopBoundaryExact": true,
+  "faceOffStopsMotion": true,
+  "reviewControl": true,
+  "maximumMotionMargins": true,
+  "canvasFallback": true,
+  "wallpaperPresetUpgraded": true,
+  "noPageErrors": true
+}

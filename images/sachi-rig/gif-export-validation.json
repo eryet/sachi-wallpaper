@@ -1,0 +1,128 @@
+{
+  "exports": [
+    {
+      "preset": "balanced",
+      "bg": "preview",
+      "filename": "sachi-balanced-2x.gif",
+      "summary": "640 \u00d7 446 \u00b7 10.0 s at 2\u00d7 \u00b7 200 frames \u00b7 repeats forever"
+    },
+    {
+      "preset": "compact",
+      "bg": "transparent",
+      "filename": "sachi-compact-2x.gif",
+      "summary": "360 \u00d7 251 \u00b7 10.0 s at 2\u00d7 \u00b7 120 frames \u00b7 repeats forever"
+    },
+    {
+      "preset": "detailed",
+      "bg": "preview",
+      "filename": "sachi-detailed-2x.gif",
+      "summary": "960 \u00d7 669 \u00b7 10.0 s at 2\u00d7 \u00b7 250 frames \u00b7 repeats forever"
+    }
+  ],
+  "cancelledCleanly": true,
+  "previewPreserved": true,
+  "snapshotSettings": true,
+  "mainThreadFallback": true,
+  "noPageErrors": true,
+  "decodedWithPillow": {
+    "export-balanced-preview.gif": {
+      "frames": 200,
+      "durationSeconds": 10.0,
+      "size": [
+        640,
+        446
+      ],
+      "repeatForever": true,
+      "comparison": [
+        {
+          "frame": 0,
+          "meanChannelError": 2.529
+        },
+        {
+          "frame": 39,
+          "meanChannelError": 2.535
+        },
+        {
+          "frame": 80,
+          "meanChannelError": 2.531
+        },
+        {
+          "frame": 125,
+          "meanChannelError": 2.537
+        },
+        {
+          "frame": 199,
+          "meanChannelError": 2.529
+        }
+      ],
+      "bytes": 6151086
+    },
+    "export-compact-transparent.gif": {
+      "frames": 120,
+      "durationSeconds": 10.0,
+      "size": [
+        360,
+        251
+      ],
+      "repeatForever": true,
+      "comparison": [
+        {
+          "frame": 0,
+          "meanChannelError": 2.601
+        },
+        {
+          "frame": 23,
+          "meanChannelError": 2.602
+        },
+        {
+          "frame": 48,
+          "meanChannelError": 2.598
+        },
+        {
+          "frame": 75,
+          "meanChannelError": 2.61
+        },
+        {
+          "frame": 119,
+          "meanChannelError": 2.601
+        }
+      ],
+      "bytes": 2654499
+    },
+    "export-detailed-preview.gif": {
+      "frames": 250,
+      "durationSeconds": 10.0,
+      "size": [
+        960,
+        669
+      ],
+      "repeatForever": true,
+      "comparison": [],
+      "bytes": 14557715
+    },
+    "export-face-slow.gif": {
+      "frames": 240,
+      "durationSeconds": 40.0,
+      "size": [
+        360,
+        251
+      ],
+      "repeatForever": true,
+      "comparison": [],
+      "bytes": 1539743
+    },
+    "export-fallback.gif": {
+      "frames": 120,
+      "durationSeconds": 10.0,
+      "size": [
+        360,
+        214
+      ],
+      "repeatForever": true,
+      "comparison": [],
+      "bytes": 1196751
+    }
+  },
+  "transparentAlphaExact": true,
+  "opaqueFramesStayOpaque": true
+}

@@ -1,0 +1,627 @@
+{
+  "source": "images/sachi_ai_scale.png",
+  "svg": "images/sachi_ai_scale.svg",
+  "canvas": [
+    1920,
+    1080
+  ],
+  "art_bounds": [
+    130,
+    81,
+    708,
+    970
+  ],
+  "paths": 87890,
+  "merged_rectangles": 242264,
+  "bytes": 12894910,
+  "cutRefinement": {
+    "revision": "hair-collar-pixel-cuts-1",
+    "reassignedSourcePixels": 5523,
+    "unchangedSourceRGBA": true
+  },
+  "faceCutRefinement": {
+    "revision": "left-hair-face-cut-1",
+    "reassignedSourcePixels": 2074,
+    "unchangedSourceRGBA": true
+  },
+  "rightBangRefinement": {
+    "revision": "right-bang-ink-cut-1",
+    "reassignedSourcePixels": 8475,
+    "unchangedSourceRGBA": true
+  },
+  "foreheadFill": {
+    "cleanSkinSamples": 14821,
+    "holdoutSamples": 2116,
+    "holdoutMeanChannelError": 1.374,
+    "holdout95PercentChannelError": 3.899
+  },
+  "cheekNeckFill": {
+    "box": [
+      300,
+      410,
+      462,
+      665
+    ],
+    "interpolatedPixels": 12802,
+    "nearestSampleFallbackPixels": 235,
+    "method": "edge-aligned source colour interpolation",
+    "edgeRefinement": {
+      "reassignedEdgePixels": 346,
+      "unchangedSourceRGBA": true
+    }
+  },
+  "layers": [
+    {
+      "id": "hair-back",
+      "label": "Back hair",
+      "parent": "head",
+      "pivot": [
+        352,
+        140
+      ],
+      "source_pixels": 50721,
+      "paths": 7443
+    },
+    {
+      "id": "neck",
+      "label": "Neck",
+      "parent": "body",
+      "pivot": [
+        323,
+        644
+      ],
+      "source_pixels": 10101,
+      "paths": 3182
+    },
+    {
+      "id": "face",
+      "label": "Face skin",
+      "parent": "head",
+      "pivot": [
+        293,
+        472
+      ],
+      "source_pixels": 94434,
+      "paths": 6203
+    },
+    {
+      "id": "hair-crown",
+      "label": "Crown and fringe",
+      "parent": "head",
+      "pivot": [
+        321,
+        83
+      ],
+      "source_pixels": 28212,
+      "paths": 3922
+    },
+    {
+      "id": "hair-fringe-left",
+      "label": "Left fringe",
+      "parent": "hair-crown",
+      "pivot": [
+        195,
+        70
+      ],
+      "source_pixels": 26877,
+      "paths": 6219
+    },
+    {
+      "id": "hair-fringe-center",
+      "label": "Center fringe",
+      "parent": "hair-crown",
+      "pivot": [
+        267,
+        66
+      ],
+      "source_pixels": 27640,
+      "paths": 2762
+    },
+    {
+      "id": "hair-fringe-right",
+      "label": "Right fringe",
+      "parent": "hair-crown",
+      "pivot": [
+        331,
+        56
+      ],
+      "source_pixels": 19348,
+      "paths": 2002
+    },
+    {
+      "id": "hair-side-left",
+      "label": "Left long side lock",
+      "parent": "head",
+      "pivot": [
+        79,
+        263
+      ],
+      "source_pixels": 14678,
+      "paths": 3870
+    },
+    {
+      "id": "hair-side-right",
+      "label": "Right long side lock",
+      "parent": "head",
+      "pivot": [
+        414,
+        135
+      ],
+      "source_pixels": 49344,
+      "paths": 8778
+    },
+    {
+      "id": "hair-face-strand",
+      "label": "Thin strand beside cheek",
+      "parent": "head",
+      "pivot": [
+        441,
+        334
+      ],
+      "source_pixels": 2816,
+      "paths": 897
+    },
+    {
+      "id": "ear-right",
+      "label": "Visible ear",
+      "parent": "head",
+      "pivot": [
+        535,
+        424
+      ],
+      "source_pixels": 4249,
+      "paths": 1429
+    },
+    {
+      "id": "ear-inner",
+      "label": "Inner ear",
+      "parent": "ear-right",
+      "pivot": [
+        544,
+        421
+      ],
+      "source_pixels": 2547,
+      "paths": 818
+    },
+    {
+      "id": "hair-clip",
+      "label": "Hair clip",
+      "parent": "head",
+      "pivot": [
+        582,
+        189
+      ],
+      "source_pixels": 5450,
+      "paths": 1629
+    },
+    {
+      "id": "brow-left",
+      "label": "Left eyebrow",
+      "parent": "head",
+      "pivot": [
+        142,
+        277
+      ],
+      "source_pixels": 4344,
+      "paths": 1109
+    },
+    {
+      "id": "brow-right",
+      "label": "Right eyebrow",
+      "parent": "head",
+      "pivot": [
+        360,
+        307
+      ],
+      "source_pixels": 1333,
+      "paths": 509
+    },
+    {
+      "id": "eye-left-white",
+      "label": "Left eye white",
+      "parent": "eye-left",
+      "pivot": [
+        146,
+        356
+      ],
+      "source_pixels": 2144,
+      "paths": 676
+    },
+    {
+      "id": "iris-left",
+      "label": "Left iris",
+      "parent": "eye-left",
+      "pivot": [
+        159,
+        359
+      ],
+      "source_pixels": 1965,
+      "paths": 944
+    },
+    {
+      "id": "pupil-left",
+      "label": "Left pupil",
+      "parent": "iris-left",
+      "pivot": [
+        162,
+        361
+      ],
+      "source_pixels": 200,
+      "paths": 128
+    },
+    {
+      "id": "lash-left-upper",
+      "label": "Left upper eyelashes",
+      "parent": "eye-left",
+      "pivot": [
+        144,
+        328
+      ],
+      "source_pixels": 2490,
+      "paths": 609
+    },
+    {
+      "id": "lash-left-lower",
+      "label": "Left lower eyelashes",
+      "parent": "eye-left",
+      "pivot": [
+        151,
+        391
+      ],
+      "source_pixels": 630,
+      "paths": 226
+    },
+    {
+      "id": "eye-left-highlights",
+      "label": "Left eye reflections",
+      "parent": "eye-left",
+      "pivot": [
+        142,
+        352
+      ],
+      "source_pixels": 393,
+      "paths": 124
+    },
+    {
+      "id": "eye-left-glint",
+      "label": "Left lower eye glint",
+      "parent": "iris-left",
+      "pivot": [
+        169,
+        380
+      ],
+      "source_pixels": 242,
+      "paths": 183
+    },
+    {
+      "id": "eye-right-white",
+      "label": "Right eye white",
+      "parent": "eye-right",
+      "pivot": [
+        377,
+        376
+      ],
+      "source_pixels": 3448,
+      "paths": 1102
+    },
+    {
+      "id": "iris-right",
+      "label": "Right iris",
+      "parent": "eye-right",
+      "pivot": [
+        385,
+        386
+      ],
+      "source_pixels": 3137,
+      "paths": 1061
+    },
+    {
+      "id": "pupil-right",
+      "label": "Right pupil",
+      "parent": "iris-right",
+      "pivot": [
+        387,
+        385
+      ],
+      "source_pixels": 252,
+      "paths": 145
+    },
+    {
+      "id": "lash-right-upper",
+      "label": "Right upper eyelashes",
+      "parent": "eye-right",
+      "pivot": [
+        372,
+        347
+      ],
+      "source_pixels": 2971,
+      "paths": 657
+    },
+    {
+      "id": "lash-right-lower",
+      "label": "Right lower eyelashes",
+      "parent": "eye-right",
+      "pivot": [
+        388,
+        417
+      ],
+      "source_pixels": 625,
+      "paths": 312
+    },
+    {
+      "id": "eye-right-highlights",
+      "label": "Right eye reflections",
+      "parent": "eye-right",
+      "pivot": [
+        363,
+        350
+      ],
+      "source_pixels": 570,
+      "paths": 177
+    },
+    {
+      "id": "eye-right-glint",
+      "label": "Right lower eye glint",
+      "parent": "iris-right",
+      "pivot": [
+        393,
+        408
+      ],
+      "source_pixels": 301,
+      "paths": 233
+    },
+    {
+      "id": "nose",
+      "label": "Nose and bridge shadow",
+      "parent": "head",
+      "pivot": [
+        163,
+        428
+      ],
+      "source_pixels": 1930,
+      "paths": 631
+    },
+    {
+      "id": "nose-highlight",
+      "label": "Nose highlight",
+      "parent": "nose",
+      "pivot": [
+        181,
+        425
+      ],
+      "source_pixels": 240,
+      "paths": 95
+    },
+    {
+      "id": "mouth-corner",
+      "label": "Left mouth corner",
+      "parent": "head",
+      "pivot": [
+        179,
+        525
+      ],
+      "source_pixels": 560,
+      "paths": 201
+    },
+    {
+      "id": "mouth",
+      "label": "Mouth line",
+      "parent": "head",
+      "pivot": [
+        248,
+        537
+      ],
+      "source_pixels": 917,
+      "paths": 292
+    },
+    {
+      "id": "lip-highlight",
+      "label": "Lower lip highlight",
+      "parent": "head",
+      "pivot": [
+        234,
+        547
+      ],
+      "source_pixels": 216,
+      "paths": 66
+    },
+    {
+      "id": "cheek-left-marks",
+      "label": "Left cheek marks",
+      "parent": "head",
+      "pivot": [
+        112,
+        393
+      ],
+      "source_pixels": 664,
+      "paths": 197
+    },
+    {
+      "id": "cheek-right-marks",
+      "label": "Right cheek marks",
+      "parent": "head",
+      "pivot": [
+        407,
+        432
+      ],
+      "source_pixels": 883,
+      "paths": 233
+    },
+    {
+      "id": "coat-back",
+      "label": "Coat and rear panel",
+      "parent": "body",
+      "pivot": [
+        345,
+        796
+      ],
+      "source_pixels": 24340,
+      "paths": 4051
+    },
+    {
+      "id": "collar-back",
+      "label": "Upper collar band",
+      "parent": "body",
+      "pivot": [
+        361,
+        679
+      ],
+      "source_pixels": 21547,
+      "paths": 4570
+    },
+    {
+      "id": "collar-left",
+      "label": "Left folded collar",
+      "parent": "body",
+      "pivot": [
+        255,
+        728
+      ],
+      "source_pixels": 22669,
+      "paths": 2121
+    },
+    {
+      "id": "sleeve-main",
+      "label": "Shoulder and sleeve",
+      "parent": "body",
+      "pivot": [
+        328,
+        732
+      ],
+      "source_pixels": 34673,
+      "paths": 1524
+    },
+    {
+      "id": "sleeve-left-fold",
+      "label": "Left sleeve fold",
+      "parent": "sleeve-main",
+      "pivot": [
+        279,
+        780
+      ],
+      "source_pixels": 5936,
+      "paths": 945
+    },
+    {
+      "id": "sleeve-right-panel",
+      "label": "Right sleeve panel",
+      "parent": "sleeve-main",
+      "pivot": [
+        373,
+        745
+      ],
+      "source_pixels": 16615,
+      "paths": 1715
+    },
+    {
+      "id": "shoulder-trim",
+      "label": "Cyan shoulder piping",
+      "parent": "sleeve-main",
+      "pivot": [
+        344,
+        718
+      ],
+      "source_pixels": 4272,
+      "paths": 1642
+    },
+    {
+      "id": "coat-right-panel",
+      "label": "Right front coat panel",
+      "parent": "body",
+      "pivot": [
+        484,
+        786
+      ],
+      "source_pixels": 22896,
+      "paths": 4283
+    },
+    {
+      "id": "coat-right-hem",
+      "label": "Right luminous hem",
+      "parent": "coat-right-panel",
+      "pivot": [
+        674,
+        828
+      ],
+      "source_pixels": 6221,
+      "paths": 2447
+    },
+    {
+      "id": "collar-right-tip",
+      "label": "Right collar tip",
+      "parent": "body",
+      "pivot": [
+        636,
+        752
+      ],
+      "source_pixels": 2948,
+      "paths": 1228
+    },
+    {
+      "id": "collar-right-seam",
+      "label": "Right collar seam",
+      "parent": "body",
+      "pivot": [
+        634,
+        765
+      ],
+      "source_pixels": 3390,
+      "paths": 1327
+    },
+    {
+      "id": "clasp-left",
+      "label": "Left collar clasp",
+      "parent": "collar-left",
+      "pivot": [
+        77,
+        862
+      ],
+      "source_pixels": 1674,
+      "paths": 644
+    },
+    {
+      "id": "clasp-right",
+      "label": "Right collar clasp",
+      "parent": "coat-right-panel",
+      "pivot": [
+        653,
+        886
+      ],
+      "source_pixels": 1308,
+      "paths": 643
+    },
+    {
+      "id": "clasp-right-highlight",
+      "label": "Right clasp center",
+      "parent": "clasp-right",
+      "pivot": [
+        652,
+        886
+      ],
+      "source_pixels": 553,
+      "paths": 189
+    },
+    {
+      "id": "strap-left",
+      "label": "Diagonal left strap",
+      "parent": "body",
+      "pivot": [
+        173,
+        886
+      ],
+      "source_pixels": 1931,
+      "paths": 632
+    },
+    {
+      "id": "cord-left",
+      "label": "Lower left cord",
+      "parent": "body",
+      "pivot": [
+        146,
+        919
+      ],
+      "source_pixels": 2580,
+      "paths": 865
+    }
+  ]
+}

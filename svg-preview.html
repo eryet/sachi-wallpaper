@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sachi — vector animation studio</title>
+  <style>
+    :root { color-scheme:dark; font:14px/1.5 system-ui,sans-serif; background:#101722; color:#dce6f4; }
+    * { box-sizing:border-box; }
+    body { margin:0; }
+    header { padding:24px 32px 20px; border-bottom:1px solid #293546; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    h1 { margin:0; font-size:24px; font-weight:550; letter-spacing:-.6px; }
+    header p { color:#98aac2; margin:4px 0 0; }
+    .badge { color:#a6eafa; border:1px solid #36566a; border-radius:30px; padding:7px 14px; white-space:nowrap; }
+    main { display:grid; grid-template-columns:minmax(0,1fr) 300px; min-height:calc(100vh - 111px); }
+    .stage { min-width:0; padding:25px; }
+    .views { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    figure { margin:0; overflow:hidden; border:1px solid #293a50; background:#162137; border-radius:12px; }
+    figcaption { position:relative; z-index:1; padding:10px 16px; background:#1b293c; color:#a8bad0; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
+    .art { width:100%; aspect-ratio:708/970; position:relative; overflow:hidden; }
+    .source { position:absolute; width:271.18644%; max-width:none; left:-18.36158%; top:-8.35052%; height:auto; }
+    object { display:block; width:708px; height:970px; transform-origin:0 0; will-change:transform; }
+    .caption { font-size:12px; color:#8ea2bd; padding:10px 2px; }
+    aside { border-left:1px solid #293546; padding:24px; background:#131d2b; }
+    h2 { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:#9cb1cc; font-weight:600; margin:0 0 18px; }
+    select,button { font:inherit; border:1px solid #3b4e68; border-radius:7px; color:#e1edfc; background:#23354e; padding:10px; width:100%; }
+    button { cursor:pointer; margin-top:10px; }
+    button:hover { background:#304963; }
+    button.primary { background:#88d9e9; color:#142132; border-color:#88d9e9; font-weight:650; }
+    button:disabled { opacity:.45; cursor:wait; }
+    label { display:block; margin-top:22px; color:#c0cfe3; }
+    input[type=range] { width:100%; accent-color:#8bdded; margin:10px 0; }
+    output { float:right; color:#8bdded; font-variant-numeric:tabular-nums; }
+    .check { display:flex; align-items:center; gap:8px; font-size:12px; margin:18px 0; }
+    hr { border:0; border-top:1px solid #2a394e; margin:25px 0; }
+    a { color:#a1e3f1; }
+    .note { font-size:12px; color:#93a6c0; }
+    #status { font-size:12px; margin:15px 0 0; color:#9ab2ce; }
+    @media(max-width:950px) { main { grid-template-columns:1fr; } aside { border-top:1px solid #293546; border-left:0; } }
+    @media(max-width:520px) { header { padding:20px; } .badge { display:none; } .stage { padding:12px; } .views { gap:8px; } figcaption { padding:8px; font-size:10px; } }
+    @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header><div><h1>Sachi / vector animation studio</h1><p>Original detail, individually addressable parts.</p></div><span class="badge">SVG · transparent · layered</span></header>
+  <main>
+    <section class="stage">
+      <div class="views">
+        <figure><figcaption>Original PNG</figcaption><div class="art"><img class="source" src="images/sachi_ai_scale.png" alt="Original Sachi illustration"></div></figure>
+        <figure><figcaption>Layered SVG <span id="mode-label">/ rest pose</span></figcaption><div class="art"><object id="vector" data="images/sachi_ai_scale.svg" type="image/svg+xml" aria-label="Layered Sachi vector illustration"></object></div></figure>
+      </div>
+      <p class="caption">Both views use the same artwork bounds. The SVG contains colored paths and transparency, with no embedded bitmap.</p>
+    </section>
+    <aside>
+      <h2>Animation controls</h2>
+      <select id="part" aria-label="Select a part" disabled><option>Loading layers…</option></select>
+      <label for="rotate">Rotation <output id="rotate-value">0°</output></label><input id="rotate" type="range" min="-6" max="6" step=".1" value="0" disabled>
+      <label for="move-x">Horizontal movement <output id="move-x-value">0 px</output></label><input id="move-x" type="range" min="-12" max="12" step=".5" value="0" disabled>
+      <label for="move-y">Vertical movement <output id="move-y-value">0 px</output></label><input id="move-y" type="range" min="-12" max="12" step=".5" value="0" disabled>
+      <label for="blink">Blink <output id="blink-value">0%</output></label><input id="blink" type="range" min="0" max="1" step=".02" value="0" disabled>
+      <label class="check"><input type="checkbox" id="underpaint" checked> Fill beneath moving parts</label>
+      <button id="demo" class="primary" disabled>Play subtle motion</button>
+      <button id="reset" disabled>Reset to original pose</button>
+      <hr>
+      <p class="note">Select a part to explore its pivot. Changes stay in this preview. Large movements can reveal the approximate fills beneath features.</p>
+      <p class="note">This faithful version uses dense, pixel-derived paths. It preserves the source detail; new expressions and smooth path morphing require additional drawing.</p>
+      <p><a href="animation-preview.html">Review the whole animation ↗</a></p>
+      <p><a href="images/sachi_ai_scale.svg" download>Download SVG</a></p>
+      <p id="status" role="status">Loading vector artwork…</p>
+    </aside>
+  </main>
+  <script>
+    const object=document.querySelector('#vector');
+    const $=id=>document.getElementById(id);
+    let doc,root,parts=[],playing=false,frame=0,started=0;
+    const poses=new Map();
+    const fields=['rotate','move-x','move-y'];
+    function setTransform(id,rotation=0,x=0,y=0,scaleY=1) {
+      const el=doc.getElementById(id); if(!el) return;
+      const [px,py]=(el.dataset.pivot||'0 0').split(' ').map(Number);
+      el.style.transform=`translate(${x}px,${y}px) rotate(${rotation}deg) scaleY(${scaleY})`;
+      el.style.transformOrigin=`${px}px ${py}px`;
+      // Sample a complete part before rotating its tightly adjacent regions.
+      const sampling=rotation||x||y||scaleY!==1?'url(#motion-sampling)':'';
+      if(el.style.filter!==sampling)el.style.filter=sampling;
+    }
+    function moved() { return playing || Number($('blink').value)>0 || [...poses.values()].some(p=>p.some(Boolean)); }
+    function fills() {
+      doc.querySelectorAll('.underpaint').forEach(el=>el.style.display=$('underpaint').checked&&moved()?'inline':'none');
+    }
+    function blink(amount) {
+      for(const side of ['left','right']) {
+        const eye=doc.getElementById(`eye-${side}`);
+        // A simple puppet blink; the closed lash is an explicitly reconstructed guide.
+        eye.style.opacity=amount>.94?'0':'1';
+        setTransform(`eye-${side}`,0,0,0,Math.max(.02,1-amount));
+        doc.getElementById(`eyelid-${side}-closed`).style.display=amount>.94?'inline':'none';
+      }
+      $('blink-value').textContent=Math.round(amount*100)+'%';
+    }
+    function applyPose() {
+      const p=fields.map(id=>Number($(id).value));
+      poses.set($('part').value,p); setTransform($('part').value,...p);
+      fields.forEach((id,i)=>$(id+'-value').textContent=p[i]+(i?' px':'°'));
+      fills(); $('mode-label').textContent=moved()?'/ pose preview':'/ rest pose';
+    }
+    function stop() {
+      playing=false; cancelAnimationFrame(frame); $('demo').textContent='Play subtle motion';
+    }
+    function reset() {
+      stop(); poses.clear();
+      parts.forEach(el=>{el.style.transform='';el.style.opacity='';el.style.filter='';});
+      fields.forEach(id=>$(id).value=0); $('blink').value=0;
+      blink(0); applyPose(); $('status').textContent='Original rest pose restored.';
+    }
+    function animate(now) {
+      if(!playing) return;
+      const t=(now-started)/1000;
+      setTransform('body',0,0,-1.8*Math.sin(t*1.3));
+      setTransform('head',.14*Math.sin(t*.7),0,-1.8*Math.sin(t*1.3));
+      setTransform('hair-side-left',.35*Math.sin(t*1.15));
+      setTransform('hair-side-right',-.28*Math.sin(t*1.15+.7));
+      setTransform('hair-face-strand',-.2*Math.sin(t*1.15+.7));
+      setTransform('collar-left',.12*Math.sin(t*1.3+.4));
+      const phase=t%5.1;
+      const amount=phase>4.65&&phase<4.92?Math.sin((phase-4.65)/.27*Math.PI):0;
+      blink(amount); frame=requestAnimationFrame(animate);
+    }
+    object.addEventListener('load',()=>{
+      try { doc=object.contentDocument;root=doc?.documentElement; } catch(e) { root=null; }
+      if(!root||root.tagName.toLowerCase()!=='svg') {
+        $('status').textContent='Serve this folder over localhost to enable controls. See the SVG guide.';return;
+      }
+      root.setAttribute('viewBox','130 81 708 970');root.setAttribute('width','708');root.setAttribute('height','970');
+      root.style.width='100%';root.style.height='100%';root.style.background='#162137';
+      const resize=new ResizeObserver(()=>object.style.transform=`scale(${object.parentElement.clientWidth/708})`);
+      resize.observe(object.parentElement);
+      parts=[...doc.querySelectorAll('g[data-pivot]')].filter(el=>el.id!=='sachi');
+      $('part').replaceChildren();
+      for(const el of parts) {
+        const option=document.createElement('option'); option.value=el.id;
+        option.textContent=el.getAttributeNS('http://www.inkscape.org/namespaces/inkscape','label')||el.id;
+        $('part').appendChild(option);
+      }
+      $('part').value='hair-side-right';
+      document.querySelectorAll('[disabled]').forEach(el=>el.disabled=false);
+      $('status').textContent=`${parts.length} named groups ready. Motion is off.`;
+    });
+    $('part').addEventListener('change',()=>{if(playing)reset();const p=poses.get($('part').value)||[0,0,0];fields.forEach((id,i)=>$(id).value=p[i]);applyPose();});
+    fields.forEach(id=>$(id).addEventListener('input',()=>{const value=$(id).value;if(playing)reset();$(id).value=value;applyPose();}));
+    $('blink').addEventListener('input',()=>{const value=Number($('blink').value);if(playing)reset();$('blink').value=value;blink(value);fills();$('mode-label').textContent=moved()?'/ pose preview':'/ rest pose';});
+    $('underpaint').addEventListener('change',fills);
+    $('reset').addEventListener('click',reset);
+    $('demo').addEventListener('click',()=>{
+      if(playing) {reset();return;}
+      reset();playing=true;started=performance.now();fills();
+      $('demo').textContent='Stop motion';$('mode-label').textContent='/ motion preview';
+      $('status').textContent='Breathing, small hair movement, and an occasional blink.';
+      frame=requestAnimationFrame(animate);
+    });
+    setTimeout(()=>{if(!doc)$('status').textContent='Still loading. If opened as a local file, serve this folder over localhost for interactive controls.';},10000);
+  </script>
+</body>
+</html>

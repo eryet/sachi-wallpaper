@@ -1,0 +1,11 @@
+{
+  "sourceSha256": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "changedLayer": "hair-side-left-continuation",
+  "unchangedTextures": 61,
+  "customRigPreserved": true,
+  "references": [
+    "reference/5397-886454838.png",
+    "reference/5397-774821837.png",
+    "reference/fac46d9cef555309123dd8c15be7a04c.jpg"
+  ]
+}

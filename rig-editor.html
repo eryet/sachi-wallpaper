@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sachi — layer rig</title><link rel="stylesheet" href="css/rig-editor.css">
+</head>
+<body>
+  <header><div class="brand"><span class="brand-mark">S</span><div><h1>Sachi <span>/ layer rig</span></h1><p>Shape the details. Compose the loop.</p></div></div><div class="file-actions"><button id="undo" disabled>Undo</button><button id="redo" disabled>Redo</button><button id="load">Load rig</button><button id="save">Save rig</button><a href="animation-preview.html">Simple preview ↗</a></div></header>
+  <main>
+    <aside class="layers-panel">
+      <div class="panel-title"><h2>Layers</h2><span id="part-count"></span></div>
+      <input type="search" id="search" aria-label="Find a layer" placeholder="Find a layer…">
+      <div class="filters" aria-label="Layer category"><button data-filter="all" aria-pressed="true">All</button><button data-filter="hair" aria-pressed="false">Hair</button><button data-filter="face" aria-pressed="false">Face</button><button data-filter="shirt" aria-pressed="false">Shirt</button></div>
+      <div id="layers" role="group" aria-label="Artwork layers"></div>
+      <div class="layer-footer"><a href="images/sachi-rig/sachi-layers.ora" download>Download layered artwork ↓</a><p>52 aligned paint layers + 6 hidden fills.</p></div>
+    </aside>
+    <section class="workspace">
+      <div class="scene-toolbar"><span><i class="dot"></i>20-second wallpaper loop</span><div><label><input type="checkbox" id="mesh"> Mesh</label><label><input type="checkbox" id="background" checked> Background</label></div></div>
+      <div id="scene" class="scene background"><div class="artboard"><canvas id="rig-canvas" aria-label="Sachi layered animation"></canvas><svg id="overlay" viewBox="0 0 836 1098" aria-hidden="true"></svg></div><span class="scene-tag">PASSING GUST</span><button id="rest">Compare original</button></div>
+      <div class="transport"><button id="play" class="primary" disabled>Play</button><output id="time">00.00 / 20.00</output><label for="speed">Speed</label><select id="speed"><option value="0.1">0.1×</option><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select><button id="replay">Replay gust</button></div>
+      <div class="timeline"><div class="track-title"><strong id="track-label">Hair Side Left · Tip bend</strong><span>0 and 20 s join automatically</span></div><svg id="curve" viewBox="0 0 800 84" preserveAspectRatio="none" role="img" aria-label="Selected parameter curve"></svg><input type="range" id="timeline" min="0" max="20" step=".01" value="0" aria-label="Loop playhead"><div class="ruler"><span>0 s</span><span>5 s</span><span>10 s</span><span>15 s</span><span>20 s</span></div></div>
+      <p id="status" role="status">Preparing the layered rig…</p>
+    </section>
+    <aside class="inspector">
+      <p class="eyebrow">Selected layer</p><h2 id="selected-name">Hair Side Left</h2><p id="parent-label" class="muted"></p>
+      <div class="checks"><label><input id="visible" type="checkbox" checked> Visible</label><label><input id="solo" type="checkbox"> Solo layer</label></div>
+      <section><h3>Motion</h3><label for="parameter">Parameter</label><select id="parameter"></select><div class="value-label"><label id="value-label" for="value">Tip bend</label><output id="value-output"></output></div><input type="range" id="value"><input type="number" id="number" aria-label="Parameter value"><div class="key-actions"><button id="add-key" class="primary">Add / update key</button><button id="clear-track">Clear track</button></div><p class="hint">Move the playhead, adjust a value, then add a key. Existing tracks record changes at the playhead.</p><div id="keys" aria-label="Keyframes"></div></section>
+      <section><h3>Anchor</h3><div class="pair"><label>X <input type="number" id="pivot-x" min="0" max="708" step="1"></label><label>Y <input type="number" id="pivot-y" min="0" max="970" step="1"></label></div><p class="hint">Rotation and tip bend pivot around this point.</p><button id="reset-layer" class="text-button">Reset this layer</button></section>
+      <section><h3>Wallpaper</h3><label class="value-label" for="wind">Gust strength <output id="wind-output">100%</output></label><input id="wind" type="range" min="0" max="150" value="100" step="5"><button id="apply" class="primary wide">Use in browser wallpaper</button><button id="export" class="wide">Export wallpaper rig</button><a class="wallpaper-link" href="index.html" target="_blank" rel="noopener">Open wallpaper ↗</a></section>
+      <p class="hint">A browser rig built from the source artwork. Hidden surfaces are approximate; large pose changes may need extra painting.</p>
+    </aside>
+  </main>
+  <input type="file" id="file" accept=".json,application/json" hidden>
+  <script src="images/sachi-animation/atlas.js"></script><script src="javascript/sachi-rig.js"></script><script src="javascript/sachi-wind.js"></script><script src="javascript/sachi-animation.js"></script><script src="javascript/sachi-rig-editor.js"></script>
+</body>
+</html>

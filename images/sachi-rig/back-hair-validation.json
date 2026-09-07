@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-07",
+  "reviewWind": 1.5,
+  "reviewFrames": 30,
+  "measurements": {
+    "outer": {
+      "maximumTravel": 42.22179675411756,
+      "maximumLift": 4.664273777620561
+    },
+    "inner": {
+      "maximumTravel": 66.338755001827,
+      "maximumLift": 7.4898734964649165
+    },
+    "earContact": {
+      "maximumTravel": 0.4614853435150381,
+      "maximumLift": 0.03195529395848165
+    }
+  },
+  "checks": {
+    "frontAndClothUnchangedSamples": 1218,
+    "exactLoopBoundary": true,
+    "crownAndEarAttachments": true,
+    "backAndUnderpaintShareField": true,
+    "independentMeshCache": {
+      "different": 54.639276205274484,
+      "restored": true
+    },
+    "backLayerControlsAndDraft": true,
+    "canvasFallback": true,
+    "sourceSvgUnchanged": true,
+    "noPageErrors": true
+  }
+}

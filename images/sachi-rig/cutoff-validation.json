@@ -1,0 +1,68 @@
+{
+  "sourceSha256": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "exactSourceRGBA": true,
+  "leftFaceFillClipped": true,
+  "rightBangBackingUsesHairShading": true,
+  "sourcePixelsAssignedOnce": 540425,
+  "cutLandmarks": [
+    "left outline",
+    "left lower lock",
+    "left collar ink",
+    "left collar edge",
+    "right inner collar ink",
+    "right lock highlight",
+    "right collar edge",
+    "outer collar rim",
+    "neck skin above collar",
+    "left temple skin",
+    "skin beside left eye",
+    "left inner lock edge",
+    "right bang upper cyan edge",
+    "right bang middle cyan edge",
+    "right bang dark face outline",
+    "right cheek strand",
+    "skin inside right hair fork",
+    "neck inside right hair fork",
+    "back hair beside right bang"
+  ],
+  "layerExport": {
+    "artworkLayers": 52,
+    "hiddenFills": 8,
+    "size": [
+      708,
+      970
+    ],
+    "alphaExact": true,
+    "compositedComparisons": {
+      "dark": {
+        "maxChannelError": 3,
+        "visibleArtMeanChannelError": 0.022090638540654732
+      },
+      "white": {
+        "maxChannelError": 3,
+        "visibleArtMeanChannelError": 0.021671832354165702
+      }
+    }
+  },
+  "browser": {
+    "joinedContinuation": true,
+    "windId": "hair-side-left",
+    "collarInFront": true,
+    "gustStrength": 1.5,
+    "noPageErrors": true,
+    "transparentFaceGap": {
+      "gapSamples": 18,
+      "maxAlpha": 0,
+      "eyeClosure": [
+        0,
+        1
+      ],
+      "times": [
+        3.4,
+        3.9,
+        12.3
+      ],
+      "pointsFollowHead": true
+    }
+  }
+}

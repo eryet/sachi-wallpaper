@@ -1,0 +1,100 @@
+{
+  "layerExport": {
+    "artworkLayers": 52,
+    "hiddenFills": 8,
+    "size": [
+      708,
+      970
+    ],
+    "alphaExact": true,
+    "compositedComparisons": {
+      "dark": {
+        "maxChannelError": 3,
+        "visibleArtMeanChannelError": 0.022090638540654732
+      },
+      "white": {
+        "maxChannelError": 3,
+        "visibleArtMeanChannelError": 0.021671832354165702
+      }
+    }
+  },
+  "date": "2026-09-07",
+  "unitTests": 32,
+  "checks": {
+    "exactLoopBoundary": true,
+    "layerMesh": true,
+    "soloAndVisibility": true,
+    "keyframeEditing": true,
+    "undoRedo": true,
+    "independentLids": true,
+    "jsonRoundtrip": true,
+    "scriptExport": true,
+    "invalidImportPreservesProject": true,
+    "draftReload": true,
+    "wallpaperApplication": true,
+    "hostControls": true,
+    "mobileLayout": true,
+    "contextLossFallback": true,
+    "localFilePlayback": true,
+    "noPageErrors": true
+  },
+  "eyeIsolation": {
+    "leftDiff": 47.223588235294116,
+    "rightDiff": 0
+  },
+  "performance": {
+    "fps": 42.30523627075194,
+    "renderer": "webgl",
+    "runs": 21
+  },
+  "fileRenderer": "canvas",
+  "headHairReview": {
+    "date": "2026-09-07",
+    "presetRevision": 4,
+    "checks": {
+      "savedDraftUpgraded": true,
+      "customClothingEditPreserved": true,
+      "flowingHeadCurve": true,
+      "noFoldedTriangles": true,
+      "maximumGustMargins": true,
+      "noPageErrors": true
+    },
+    "mesh": {
+      "minimumAreaRatio": 0.13175686073182208,
+      "triangles": 804092
+    }
+  },
+  "backHairReview": {
+    "date": "2026-09-07",
+    "reviewWind": 1.5,
+    "reviewFrames": 30,
+    "measurements": {
+      "outer": {
+        "maximumTravel": 42.22179675411756,
+        "maximumLift": 4.664273777620561
+      },
+      "inner": {
+        "maximumTravel": 66.338755001827,
+        "maximumLift": 7.4898734964649165
+      },
+      "earContact": {
+        "maximumTravel": 0.4614853435150381,
+        "maximumLift": 0.03195529395848165
+      }
+    },
+    "checks": {
+      "frontAndClothUnchangedSamples": 1218,
+      "exactLoopBoundary": true,
+      "crownAndEarAttachments": true,
+      "backAndUnderpaintShareField": true,
+      "independentMeshCache": {
+        "different": 54.639276205274484,
+        "restored": true
+      },
+      "backLayerControlsAndDraft": true,
+      "canvasFallback": true,
+      "sourceSvgUnchanged": true,
+      "noPageErrors": true
+    }
+  }
+}

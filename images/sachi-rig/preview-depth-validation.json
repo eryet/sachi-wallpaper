@@ -1,0 +1,12 @@
+{
+  "sourceHash": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "frames": 160,
+  "failures": [],
+  "clothPixels": 48464,
+  "exposedTaperedTips": 8,
+  "loopBoundaryExact": true,
+  "originalRestPoseExact": true,
+  "canvasFallback": true,
+  "rigToSimpleSwitch": true,
+  "noPageErrors": true
+}

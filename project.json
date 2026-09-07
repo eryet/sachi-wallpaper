@@ -105,6 +105,74 @@
 				"text" : "<br />老婆去除<br />Waifu Remove<br />",
 				"type" : "bool",
 				"value" : false
+			},
+			"sachianimation" :
+			{
+				"index" : 9,
+				"order" : 109,
+				"text" : "角色動畫 / Character animation",
+				"type" : "bool",
+				"value" : true
+			},
+			"sachihair" :
+			{
+				"index" : 10,
+				"order" : 110,
+				"text" : "頭髮擺動 / Hair movement",
+				"type" : "slider",
+				"min" : 0,
+				"max" : 150,
+				"value" : 100,
+				"step" : 5,
+				"fraction" : false
+			},
+			"sachiface" :
+			{
+				"index" : 11,
+				"order" : 111,
+				"text" : "臉部動畫 / Facial movement",
+				"type" : "slider",
+				"min" : 0,
+				"max" : 150,
+				"value" : 100,
+				"step" : 5,
+				"fraction" : false
+			},
+			"sachishirt" :
+			{
+				"index" : 12,
+				"order" : 112,
+				"text" : "衣服飄動 / Clothing movement",
+				"type" : "slider",
+				"min" : 0,
+				"max" : 150,
+				"value" : 100,
+				"step" : 5,
+				"fraction" : false
+			},
+			"sachiwind" :
+			{
+				"index" : 14,
+				"order" : 114,
+				"text" : "陣風強度 / Wind gust strength",
+				"type" : "slider",
+				"min" : 0,
+				"max" : 150,
+				"value" : 100,
+				"step" : 5,
+				"fraction" : false
+			},
+			"sachispeed" :
+			{
+				"index" : 13,
+				"order" : 113,
+				"text" : "動畫速度 / Animation speed",
+				"type" : "slider",
+				"min" : 25,
+				"max" : 200,
+				"value" : 100,
+				"step" : 5,
+				"fraction" : false
 			}
 		}
 	},

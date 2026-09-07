@@ -1,0 +1,100 @@
+{
+  "browser": "Chromium (headless)",
+  "unitTests": "16 passed",
+  "checks": {
+    "stageIsolation": true,
+    "sliders": true,
+    "restPose": true,
+    "mobileLayout": true,
+    "wallpaperSettings": true,
+    "rgbCompatibility": true,
+    "hostPauseReasons": true,
+    "hostFps": true,
+    "reducedMotion": true,
+    "staticFallback": true,
+    "noPageErrors": true,
+    "croppedCanvasAlignment": true
+  },
+  "benchmark": {
+    "frames": 120,
+    "medianMs": 13.200000047683716,
+    "p95Ms": 17.399999976158142,
+    "observedPlaybackFps": 59.86937590840656,
+    "note": "Isolated Chromium headless preview, native 708x970 character canvas. Timings force GPU readback; FPS samples 2.2 seconds of normal playback. Native Wallpaper Engine performance is not yet measured."
+  },
+  "restPose": {
+    "visibleArtMeanChannelError": 0.021789640869069097,
+    "maxChannelError": 3,
+    "maxAlphaError": 0,
+    "comparisonBackground": "#162137",
+    "nativeCanvas": [
+      1920,
+      1080
+    ]
+  },
+  "eyeReview": {
+    "date": "2026-09-07",
+    "unitTests": "7 passed",
+    "checks": {
+      "slowReplay": true,
+      "faceZeroReplay": true,
+      "mobileLayout": true,
+      "localFilePlayback": true,
+      "wallpaperBlink": true,
+      "noRuntimePixelReadback": true,
+      "noPageErrors": true
+    },
+    "restPose": {
+      "visibleArtMeanChannelError": 0.021722409831768208,
+      "maxChannelError": 3,
+      "maxAlphaError": 0
+    },
+    "onset": {
+      "maxChannelDifference": 3,
+      "totalChannelDifference": 648
+    },
+    "benchmark": {
+      "frames": 80,
+      "medianMs": 20.399999976158142,
+      "p95Ms": 25.799999952316284,
+      "note": "Headless Chromium, 80 poses across one blink, including canvas pixel readback."
+    }
+  },
+  "windReview": {
+    "date": "2026-09-07",
+    "checks": {
+      "replayGust": true,
+      "speedControls": true,
+      "faceUnchanged": true,
+      "categoryIsolation": true,
+      "maxStrengthMargins": true,
+      "mobileLayout": true,
+      "contextLossFallback": true,
+      "localFilePlayback": true,
+      "wallpaperControls": true,
+      "wallpaperAlignment": true,
+      "noPageErrors": true
+    },
+    "pixelComparisons": {
+      "face": {
+        "mean": 0,
+        "max": 0
+      },
+      "isolatedCloth": {
+        "mean": 0.0014397321428571428,
+        "max": 2
+      },
+      "isolatedHair": {
+        "mean": 0.07909615384615384,
+        "max": 9
+      }
+    },
+    "performance": {
+      "frames": 196,
+      "elapsedMs": 3513.399999976158,
+      "fps": 55.78641771541243,
+      "mode": "webgl"
+    },
+    "localFileRenderer": "canvas"
+  }
+}

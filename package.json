@@ -1,0 +1,11 @@
+{
+  "name": "sachi-wallpaper",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/sachi-animation.test.cjs tests/sachi-wind.test.cjs tests/sachi-rig.test.cjs tests/sachi-gif.test.cjs",
+    "build:animation": "python scripts/export_sachi_animation.py && node scripts/build-sachi-atlas.cjs && node scripts/export-sachi-rig.cjs && python scripts/package_sachi_layers.py"
+  },
+  "devDependencies": {
+    "sharp": "0.35.4"
+  }
+}

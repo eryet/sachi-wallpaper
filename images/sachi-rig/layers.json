@@ -1,0 +1,740 @@
+{
+  "format": "sachi-aligned-layers",
+  "version": 1,
+  "size": [
+    708,
+    970
+  ],
+  "sourceCanvas": [
+    1920,
+    1080
+  ],
+  "sourceOffset": [
+    130,
+    81
+  ],
+  "sourceSha256": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "order": "bottom-to-top",
+  "layers": [
+    {
+      "id": "body-underpaint",
+      "name": "Body Underpaint",
+      "parent": "body",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/body-underpaint.png"
+    },
+    {
+      "id": "coat-underpaint",
+      "name": "Coat Underpaint",
+      "parent": "body",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/coat-underpaint.png"
+    },
+    {
+      "id": "neck",
+      "name": "Neck",
+      "parent": "body",
+      "pivot": [
+        323,
+        644
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/neck.png"
+    },
+    {
+      "id": "coat-back",
+      "name": "Coat Back",
+      "parent": "body",
+      "pivot": [
+        345,
+        796
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/coat-back.png"
+    },
+    {
+      "id": "collar-back",
+      "name": "Collar Back",
+      "parent": "body",
+      "pivot": [
+        361,
+        679
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/collar-back.png"
+    },
+    {
+      "id": "collar-left",
+      "name": "Collar Left",
+      "parent": "body",
+      "pivot": [
+        255,
+        728
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/collar-left.png"
+    },
+    {
+      "id": "clasp-left",
+      "name": "Clasp Left",
+      "parent": "collar-left",
+      "pivot": [
+        77,
+        862
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/clasp-left.png"
+    },
+    {
+      "id": "sleeve-main",
+      "name": "Sleeve Main",
+      "parent": "body",
+      "pivot": [
+        328,
+        732
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/sleeve-main.png"
+    },
+    {
+      "id": "sleeve-left-fold",
+      "name": "Sleeve Left Fold",
+      "parent": "sleeve-main",
+      "pivot": [
+        279,
+        780
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/sleeve-left-fold.png"
+    },
+    {
+      "id": "sleeve-right-panel",
+      "name": "Sleeve Right Panel",
+      "parent": "sleeve-main",
+      "pivot": [
+        373,
+        745
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/sleeve-right-panel.png"
+    },
+    {
+      "id": "shoulder-trim",
+      "name": "Shoulder Trim",
+      "parent": "sleeve-main",
+      "pivot": [
+        344,
+        718
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/shoulder-trim.png"
+    },
+    {
+      "id": "coat-right-panel",
+      "name": "Coat Right Panel",
+      "parent": "body",
+      "pivot": [
+        484,
+        786
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/coat-right-panel.png"
+    },
+    {
+      "id": "coat-right-hem",
+      "name": "Coat Right Hem",
+      "parent": "coat-right-panel",
+      "pivot": [
+        674,
+        828
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/coat-right-hem.png"
+    },
+    {
+      "id": "clasp-right",
+      "name": "Clasp Right",
+      "parent": "coat-right-panel",
+      "pivot": [
+        653,
+        886
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/clasp-right.png"
+    },
+    {
+      "id": "clasp-right-highlight",
+      "name": "Clasp Right Highlight",
+      "parent": "clasp-right",
+      "pivot": [
+        652,
+        886
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/clasp-right-highlight.png"
+    },
+    {
+      "id": "collar-right-tip",
+      "name": "Collar Right Tip",
+      "parent": "body",
+      "pivot": [
+        636,
+        752
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/collar-right-tip.png"
+    },
+    {
+      "id": "collar-right-seam",
+      "name": "Collar Right Seam",
+      "parent": "body",
+      "pivot": [
+        634,
+        765
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/collar-right-seam.png"
+    },
+    {
+      "id": "strap-left",
+      "name": "Strap Left",
+      "parent": "body",
+      "pivot": [
+        173,
+        886
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/strap-left.png"
+    },
+    {
+      "id": "cord-left",
+      "name": "Cord Left",
+      "parent": "body",
+      "pivot": [
+        146,
+        919
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/cord-left.png"
+    },
+    {
+      "id": "face-underpaint",
+      "name": "Face Underpaint",
+      "parent": "head",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/face-underpaint.png"
+    },
+    {
+      "id": "hair-underpaint",
+      "name": "Hair Underpaint",
+      "parent": "head",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/hair-underpaint.png"
+    },
+    {
+      "id": "eyelid-left-underpaint",
+      "name": "Eyelid Left Underpaint",
+      "parent": "head",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/eyelid-left-underpaint.png"
+    },
+    {
+      "id": "eyelid-right-underpaint",
+      "name": "Eyelid Right Underpaint",
+      "parent": "head",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/eyelid-right-underpaint.png"
+    },
+    {
+      "id": "hair-back",
+      "name": "Hair Back",
+      "parent": "head",
+      "pivot": [
+        352,
+        140
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-back.png"
+    },
+    {
+      "id": "face",
+      "name": "Face",
+      "parent": "head",
+      "pivot": [
+        293,
+        472
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/face.png"
+    },
+    {
+      "id": "hair-crown",
+      "name": "Hair Crown",
+      "parent": "head",
+      "pivot": [
+        321,
+        83
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-crown.png"
+    },
+    {
+      "id": "hair-fringe-left",
+      "name": "Hair Fringe Left",
+      "parent": "hair-crown",
+      "pivot": [
+        195,
+        70
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-fringe-left.png"
+    },
+    {
+      "id": "hair-fringe-center",
+      "name": "Hair Fringe Center",
+      "parent": "hair-crown",
+      "pivot": [
+        267,
+        66
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-fringe-center.png"
+    },
+    {
+      "id": "hair-fringe-right",
+      "name": "Hair Fringe Right",
+      "parent": "hair-crown",
+      "pivot": [
+        331,
+        56
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-fringe-right.png"
+    },
+    {
+      "id": "hair-side-left",
+      "name": "Hair Side Left",
+      "parent": "head",
+      "pivot": [
+        79,
+        263
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-side-left.png"
+    },
+    {
+      "id": "hair-side-left-continuation",
+      "name": "Hair Side Left Continuation",
+      "parent": "hair-side-left",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/hair-side-left-continuation.png"
+    },
+    {
+      "id": "hair-side-right",
+      "name": "Hair Side Right",
+      "parent": "head",
+      "pivot": [
+        414,
+        135
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-side-right.png"
+    },
+    {
+      "id": "hair-side-right-continuation",
+      "name": "Hair Side Right Continuation",
+      "parent": "hair-side-right",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/hair-side-right-continuation.png"
+    },
+    {
+      "id": "hair-face-strand",
+      "name": "Hair Face Strand",
+      "parent": "head",
+      "pivot": [
+        441,
+        334
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-face-strand.png"
+    },
+    {
+      "id": "ear-right",
+      "name": "Ear Right",
+      "parent": "head",
+      "pivot": [
+        535,
+        424
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/ear-right.png"
+    },
+    {
+      "id": "ear-inner",
+      "name": "Ear Inner",
+      "parent": "ear-right",
+      "pivot": [
+        544,
+        421
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/ear-inner.png"
+    },
+    {
+      "id": "hair-clip",
+      "name": "Hair Clip",
+      "parent": "head",
+      "pivot": [
+        582,
+        189
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/hair-clip.png"
+    },
+    {
+      "id": "brow-left",
+      "name": "Brow Left",
+      "parent": "head",
+      "pivot": [
+        142,
+        277
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/brow-left.png"
+    },
+    {
+      "id": "brow-right",
+      "name": "Brow Right",
+      "parent": "head",
+      "pivot": [
+        360,
+        307
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/brow-right.png"
+    },
+    {
+      "id": "eye-left-white",
+      "name": "Eye Left White",
+      "parent": "eye-left",
+      "pivot": [
+        146,
+        356
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-left-white.png"
+    },
+    {
+      "id": "iris-left",
+      "name": "Iris Left",
+      "parent": "eye-left",
+      "pivot": [
+        159,
+        359
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/iris-left.png"
+    },
+    {
+      "id": "pupil-left",
+      "name": "Pupil Left",
+      "parent": "iris-left",
+      "pivot": [
+        162,
+        361
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/pupil-left.png"
+    },
+    {
+      "id": "eye-left-glint",
+      "name": "Eye Left Glint",
+      "parent": "iris-left",
+      "pivot": [
+        169,
+        380
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-left-glint.png"
+    },
+    {
+      "id": "lash-left-upper",
+      "name": "Lash Left Upper",
+      "parent": "eye-left",
+      "pivot": [
+        144,
+        328
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/lash-left-upper.png"
+    },
+    {
+      "id": "lash-left-lower",
+      "name": "Lash Left Lower",
+      "parent": "eye-left",
+      "pivot": [
+        151,
+        391
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/lash-left-lower.png"
+    },
+    {
+      "id": "eye-left-highlights",
+      "name": "Eye Left Highlights",
+      "parent": "eye-left",
+      "pivot": [
+        142,
+        352
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-left-highlights.png"
+    },
+    {
+      "id": "eye-right-white",
+      "name": "Eye Right White",
+      "parent": "eye-right",
+      "pivot": [
+        377,
+        376
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-right-white.png"
+    },
+    {
+      "id": "iris-right",
+      "name": "Iris Right",
+      "parent": "eye-right",
+      "pivot": [
+        385,
+        386
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/iris-right.png"
+    },
+    {
+      "id": "pupil-right",
+      "name": "Pupil Right",
+      "parent": "iris-right",
+      "pivot": [
+        387,
+        385
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/pupil-right.png"
+    },
+    {
+      "id": "eye-right-glint",
+      "name": "Eye Right Glint",
+      "parent": "iris-right",
+      "pivot": [
+        393,
+        408
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-right-glint.png"
+    },
+    {
+      "id": "lash-right-upper",
+      "name": "Lash Right Upper",
+      "parent": "eye-right",
+      "pivot": [
+        372,
+        347
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/lash-right-upper.png"
+    },
+    {
+      "id": "lash-right-lower",
+      "name": "Lash Right Lower",
+      "parent": "eye-right",
+      "pivot": [
+        388,
+        417
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/lash-right-lower.png"
+    },
+    {
+      "id": "eye-right-highlights",
+      "name": "Eye Right Highlights",
+      "parent": "eye-right",
+      "pivot": [
+        363,
+        350
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/eye-right-highlights.png"
+    },
+    {
+      "id": "nose",
+      "name": "Nose",
+      "parent": "head",
+      "pivot": [
+        163,
+        428
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/nose.png"
+    },
+    {
+      "id": "nose-highlight",
+      "name": "Nose Highlight",
+      "parent": "nose",
+      "pivot": [
+        181,
+        425
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/nose-highlight.png"
+    },
+    {
+      "id": "mouth-corner",
+      "name": "Mouth Corner",
+      "parent": "head",
+      "pivot": [
+        179,
+        525
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/mouth-corner.png"
+    },
+    {
+      "id": "mouth",
+      "name": "Mouth",
+      "parent": "head",
+      "pivot": [
+        248,
+        537
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/mouth.png"
+    },
+    {
+      "id": "lip-highlight",
+      "name": "Lip Highlight",
+      "parent": "head",
+      "pivot": [
+        234,
+        547
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/lip-highlight.png"
+    },
+    {
+      "id": "cheek-left-marks",
+      "name": "Cheek Left Marks",
+      "parent": "head",
+      "pivot": [
+        112,
+        393
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/cheek-left-marks.png"
+    },
+    {
+      "id": "cheek-right-marks",
+      "name": "Cheek Right Marks",
+      "parent": "head",
+      "pivot": [
+        407,
+        432
+      ],
+      "visible": true,
+      "kind": "art",
+      "file": "layers/cheek-right-marks.png"
+    }
+  ]
+}

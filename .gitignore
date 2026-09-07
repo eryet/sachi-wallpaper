@@ -1,0 +1,4 @@
+.svg-build/
+__pycache__/
+node_modules/
+debug.log

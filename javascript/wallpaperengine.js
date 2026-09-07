@@ -32,7 +32,23 @@ function rgbToCSS(colorArray) {
 }
 
 window.wallpaperPropertyListener = {
+  setPaused: function (isPaused) {
+    window.suspendSachiMotion("host", isPaused);
+  },
+  applyGeneralProperties: function (properties) {
+    if (properties.fps) {
+      window.applySachiMotionSettings({ fps: properties.fps });
+    }
+  },
   applyUserProperties: function (properties) {
+    var motion = {};
+    if (properties.sachianimation) motion.enabled = properties.sachianimation.value;
+    if (properties.sachihair) motion.hair = properties.sachihair.value / 100;
+    if (properties.sachiface) motion.face = properties.sachiface.value / 100;
+    if (properties.sachishirt) motion.shirt = properties.sachishirt.value / 100;
+    if (properties.sachiwind) motion.wind = properties.sachiwind.value / 100;
+    if (properties.sachispeed) motion.speed = properties.sachispeed.value / 100;
+    if (Object.keys(motion).length) window.applySachiMotionSettings(motion);
     if (properties.shootingstarnumber) {
       shootingstarnumber = properties.shootingstarnumber.value;
       entities = [];
@@ -59,6 +75,7 @@ window.wallpaperPropertyListener = {
       entitiesUpdate();
     }
     if (properties.waifuvisibility) {
+      window.suspendSachiMotion("hidden", properties.waifuvisibility.value);
       properties.waifuvisibility.value
         ? sachiElement.classList.add("visibility")
         : sachiElement.classList.remove("visibility");
