@@ -4,37 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#080e2b">
     <title>Sachi Wallpaper</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="javascript/parallax.js"></script>
     <link rel="stylesheet" href="css/normalize.min.css">
-    <link rel='stylesheet' href='css/rgbanimation.css'>
-    <link rel='stylesheet' href='css/style.css'>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div id="scene1">
-        <div class="layer" data-depth=".4">
-            <div id="sachi" class="sachi">
-                <img id="sachi-static" src="images/sachi_ai_scale.png" alt="Sachi" />
-                <canvas id="sachi-motion" width="1920" height="1080" aria-label="Sachi with windblown hair, blinking eyes, and flowing clothing" hidden></canvas>
+    <main id="wallpaper" aria-label="Animated Sachi wallpaper">
+        <div id="scene1" aria-hidden="true">
+            <div id="character-placement">
+                <div id="sachi" class="sachi">
+                    <img id="sachi-static" src="images/sachi_ai_scale.png" alt="Sachi" />
+                    <canvas id="sachi-motion" width="1920" height="1080" aria-label="Sachi with windblown hair, blinking eyes, and flowing clothing" hidden></canvas>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="scene2">
-        <div class="layer" data-depth=".4">
+        <div id="scene2">
             <div id="clock">
                 <p class="date"></p>
                 <p class="time"></p>
             </div>
         </div>
-    </div>
-    <div class="canvas-wrapper">
-        <canvas id="particleCanvas"></canvas>
-    </div>
-</body>
+        <div class="canvas-wrapper" aria-hidden="true">
+            <canvas id="particleCanvas"></canvas>
+        </div>
+    </main>
 <script src="images/sachi-animation/atlas.js"></script>
+<script src="javascript/sachi-layout.js"></script>
+<script>window.sachiLayout = SachiLayout.mount(document.getElementById('wallpaper'));</script>
 <script src="javascript/sachi-rig.js"></script>
 <script src="images/sachi-rig/project.js"></script>
 <script src="javascript/sachi-wind.js"></script>
@@ -43,11 +42,5 @@
 <script src="javascript/wallpaperengine.js"></script>
 <script src="javascript/clock.js"></script>
 <script src="javascript/script.js"></script>
-<script>
-    var scene1 = document.getElementById("scene1");
-    var parallaxInstance1 = new Parallax(scene1);
-    var scene2 = document.getElementById("scene2");
-    var parallaxInstance2 = new Parallax(scene2);
-</script>
-
+</body>
 </html>

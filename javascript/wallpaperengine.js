@@ -34,10 +34,12 @@ function rgbToCSS(colorArray) {
 window.wallpaperPropertyListener = {
   setPaused: function (isPaused) {
     window.suspendSachiMotion("host", isPaused);
+    window.suspendSachiParticles?.("host", isPaused);
   },
   applyGeneralProperties: function (properties) {
     if (properties.fps) {
       window.applySachiMotionSettings({ fps: properties.fps });
+      window.setSachiParticleFPS?.(properties.fps);
     }
   },
   applyUserProperties: function (properties) {

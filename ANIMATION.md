@@ -13,6 +13,31 @@ followed by delayed flutter, a small rebound, and a lull. All periodic movements
 boundary with matching positions and velocities. Four blinks, including a short
 double blink, happen away from that boundary.
 
+## Responsive wallpaper
+
+`index.html` fills the current viewport, including mobile browser height changes.
+The original 1920 × 1080 character framing is retained on that screen size.
+Other landscape sizes scale the illustration proportionally and anchor the
+clock within the usable screen. Portrait layouts put the clock above the
+character, with space for screen notches and rounded corners. The background
+covers the viewport with a separate focal position for portrait compositions.
+
+`javascript/sachi-layout.js` calculates placement for both the static fallback
+and animated atlas, so they share the same framing. Pointer parallax is bounded
+on desktop and disabled for touch, portrait, and reduced-motion settings.
+Stars use viewport coordinates and a capped high-DPI canvas. The star-count
+setting is the density at 1920 × 1080; fewer particles appear on smaller screens,
+with a cap on very large screens. Both character animation and particles respect
+the host's pause state and frame-rate limit; particles also pause when hidden or
+reduced motion is requested.
+
+Browser checks cover 12 sizes from 320 × 568 through 5120 × 1440 and 3840 × 2160,
+plus rotation, changing viewport height, safe areas, host controls, and missing
+atlas fallback. See `images/sachi-animation/responsive-validation.json`.
+The phone, tablet, and laptop layouts also pass WebKit checks, including mobile
+rotation. These are browser viewport and touch emulations; physical device and
+native Wallpaper Engine checks remain useful before a workshop release.
+
 ## Review in order
 
 Open `animation-preview.html` using a local server. Review **01 Hair**, then

@@ -6,6 +6,12 @@ bend the hair and ripple the clothing, with blinking and breathing. Review [hair
 separately or together. Wallpaper Engine exposes character animation, motion
 strengths, wind gust strength, and playback speed in its settings.
 
+The wallpaper adapts to laptops, ultrawide and 4K monitors, tablets, and phones.
+Landscape screens keep the character on the left and clock on the right;
+portrait screens center the character below a notch-safe clock. Rotation and
+window resizing update the layout automatically. Stars scale with the viewport,
+and touch screens keep a steady composition without pointer parallax.
+
 The [layered SVG master](images/sachi_ai_scale.svg) retains 52 editable artwork
 parts. Playback uses a cached atlas generated from that SVG. See the
 [animation guide](ANIMATION.md) for controls and rebuilding, or use the
