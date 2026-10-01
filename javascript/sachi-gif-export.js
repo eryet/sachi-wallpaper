@@ -1,15 +1,20 @@
 /* Deterministic GIF export of the current preview, without moving its playhead. */
 (function(scope,factory){const api=factory(typeof module==='object'&&module.exports?require('./sachi-gif-codec.js'):scope.SachiGifCodec);if(typeof module==='object'&&module.exports)module.exports=api;else scope.SachiGifExport=api;})(typeof globalThis!=='undefined'?globalThis:this,function(Codec){
   'use strict';
-  const PRESETS={compact:{edge:360,fps:12,label:'Compact'},balanced:{edge:640,fps:20,label:'Balanced'},detailed:{edge:960,fps:25,label:'Detailed'}};
+  const PRESETS={compact:{edge:360,fps:12,label:'Compact'},balanced:{edge:640,fps:20,label:'Balanced'},detailed:{edge:960,fps:25,label:'Detailed'},high:{edge:1280,fps:30,label:'High'},ultra:{edge:1920,fps:50,label:'Ultra'}};
   function plan({preset='balanced',width,height,speed=1,duration=20}){
-    const choice=PRESETS[preset];
+    const choice=Object.hasOwn(PRESETS,preset)?PRESETS[preset]:null;
     if(!choice||![width,height,speed,duration].every(Number.isFinite)||width<=0||height<=0||speed<.1||speed>2||duration!==20)throw new Error('Invalid GIF export settings.');
-    const scale=Math.min(1,choice.edge/Math.max(width,height));
+    // The preview sets composition, not resolution. Render from the full layer
+    // atlas so a narrow browser window still exports the selected pixel size.
+    const scale=choice.edge/Math.max(width,height);
     // Slowing down changes delays, not the number of source samples. This
     // preserves the selected speed without producing thousands of duplicate
     // intermediate frames or accumulating a full RGBA animation in memory.
-    const frames=Math.ceil(duration*choice.fps/Math.max(1,speed)),ticks=Math.round(duration/speed*100);
+    const ticks=Math.round(duration/speed*100);
+    // Rounded custom speeds can otherwise give a 50 fps frame a 10 ms delay.
+    // Keep every delay at least 20 ms while distributing centiseconds exactly.
+    const frames=Math.min(Math.ceil(duration*choice.fps/Math.max(1,speed)),Math.floor(ticks/2));
     return {preset,width:Math.max(1,Math.round(width*scale)),height:Math.max(1,Math.round(height*scale)),frames,duration:ticks/100,speed,
       times:Array.from({length:frames},(_,i)=>i*duration/frames),
       delays:Array.from({length:frames},(_,i)=>(Math.round((i+1)*ticks/frames)-Math.round(i*ticks/frames))*10)};
@@ -75,7 +80,7 @@
         const scale=Math.min(info.width/clone.canvas.width,info.height/clone.canvas.height),w=clone.canvas.width*scale,h=clone.canvas.height*scale;
         ctx.drawImage(clone.canvas,(info.width-w)/2,(info.height-h)/2,w,h);
       };
-      const thumbnail=document.createElement('canvas'),ratio=Math.min(1,240/Math.max(info.width,info.height));
+      const thumbnail=document.createElement('canvas'),sampleEdge=PRESETS[preset].edge>=1280?384:240,ratio=Math.min(1,sampleEdge/Math.max(info.width,info.height));
       thumbnail.width=Math.max(1,Math.round(info.width*ratio));thumbnail.height=Math.max(1,Math.round(info.height*ratio));
       const thumb=thumbnail.getContext('2d',{willReadFrequently:true}),sampleTimes=[0,2,3.92,5,7.8,10,12.5,14.11,16.5,19];
       const stride=thumbnail.width*thumbnail.height*4,copies=transparent?1:3,samples=new Uint8Array(stride*sampleTimes.length*copies);

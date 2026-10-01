@@ -159,7 +159,7 @@ The reviewed hair/collar mask revision migrates old saved rigs while preserving
 their controls and keys. Other SVG changes require re-exporting the rig against
 the new atlas. The exact compatible hashes are in `scripts/sachi-art-revisions.json`.
 
-`npm test` runs 39 checks, including GIF timing and encoding, cyclic parameter interpolation, import
+`npm test` runs 40 checks, including GIF timing and encoding, cyclic parameter interpolation, import
 validation, source binding, key replacement, and independent eyelid controls.
 The head/hair checks cover fixed roots, connected neck motion, continuous head
 velocity, and preserving custom edits when upgrading the default preset.

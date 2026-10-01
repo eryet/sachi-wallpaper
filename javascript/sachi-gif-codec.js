@@ -1,17 +1,22 @@
 /* A stable palette and a streaming encoder shared by the worker and fallback. */
 (function(scope,factory){const api=factory(typeof module==='object'&&module.exports?require('./vendor/gifenc.js'):scope.gifenc);if(typeof module==='object'&&module.exports)module.exports=api;else scope.SachiGifCodec=api;})(typeof globalThis!=='undefined'?globalThis:this,function(Gif){
   'use strict';
-  const MAX_BYTES=128*1024*1024;
+  const MAX_BYTES=256*1024*1024,MAX_EDGE=1920;
   const BAYER=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
   function binaryAlpha(rgba){
     for(let i=0;i<rgba.length;i+=4){if(rgba[i+3]<128)rgba[i]=rgba[i+1]=rgba[i+2]=rgba[i+3]=0;else rgba[i+3]=255;}
     return rgba;
   }
   function create(samples,width,height,transparent=false){
-    if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width*height>1000000)throw new Error('Choose a smaller GIF size.');
+    if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>MAX_EDGE||height>MAX_EDGE)throw new Error('Choose a smaller GIF size.');
     if(!samples.length||samples.length%4)throw new Error('No palette samples were rendered.');
-    const opaque=[];for(let i=0;i<samples.length;i+=4)if(samples[i+3]>=128)opaque.push(samples[i],samples[i+1],samples[i+2],255);
-    const colors=opaque.length?Gif.quantize(new Uint8Array(opaque),255,{format:'rgb565'}):[[0,0,0]];
+    // Packed bytes avoid the large JavaScript-number array that higher-detail
+    // palette sampling would otherwise allocate before quantization.
+    let count=0;for(let i=3;i<samples.length;i+=4)if(samples[i]>=128)count+=4;
+    // gifenc reads the whole backing buffer, so allocate its exact used size.
+    const opaque=new Uint8Array(count);let next=0;
+    for(let i=0;i<samples.length;i+=4)if(samples[i+3]>=128){opaque[next++]=samples[i];opaque[next++]=samples[i+1];opaque[next++]=samples[i+2];opaque[next++]=255;}
+    const colors=count?Gif.quantize(opaque,255,{format:'rgb565'}):[[0,0,0]];
     const palette=[[0,0,0],...colors];
     // One stable, finer RGB lookup for the entire loop avoids per-frame color
     // rounding changes. A fixed spatial dither softens gradient bands without
@@ -49,7 +54,7 @@
         }
         gif.writeFrame(index,width,height,{palette:frames===0?palette:undefined,delay,repeat:0,transparent:transparent||frames>0,transparentIndex:0,dispose:transparent?2:1});
         frames++;
-        if(gif.bytesView().byteLength>MAX_BYTES)throw new Error('This GIF is too large. Try the Compact preset.');
+        if(gif.bytesView().byteLength>MAX_BYTES)throw new Error('This GIF is too large. Try a smaller preset or faster playback speed.');
       },
       finish(){if(finished||!frames)throw new Error('No animation frames were encoded.');finished=true;gif.finish();return gif.bytes();}
     };

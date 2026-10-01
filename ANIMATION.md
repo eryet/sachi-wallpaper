@@ -54,6 +54,14 @@ lasts 10 seconds; at 0.5× it lasts 40 seconds. It repeats indefinitely.
 - **Compact:** longest edge 360 px, up to 12 fps.
 - **Balanced:** longest edge 640 px, up to 20 fps.
 - **Detailed:** longest edge 960 px, up to 25 fps.
+- **High:** longest edge 1280 px, up to 30 fps.
+- **Ultra:** longest edge 1920 px, up to 50 fps.
+
+Every preset exports its selected longest-edge size, even in a narrow browser
+window. The full atlas supplies the artwork; the on-screen preview is not a
+resolution cap. High and Ultra also sample more detail for the color palette.
+Larger exports take longer and produce larger files. The artwork's original
+detail and GIF's 256-color palette still limit fidelity.
 
 The GIF follows the scene's aspect ratio and centered character placement.
 **Match preview** includes the displayed wallpaper background, or the plain
@@ -63,7 +71,9 @@ with GIF's binary transparency. Preview controls and labels are excluded.
 Rendering takes place locally. Progress and **Cancel export** remain available;
 the preview's playhead and settings are not changed. A download link stays
 available after completion. Slower speeds use longer frame delays instead of
-increasing frame count, keeping memory bounded. A palette sampled across the
+increasing frame count (up to 1,000 frames for Ultra), keeping memory bounded.
+Only one RGBA frame is sent to the encoder at a time; encoded output has a
+256 MiB size guard. A palette sampled across the
 loop stays fixed across frames to avoid color flicker, with spatial dithering
 to soften color bands. Unchanged opaque background pixels are reused to reduce
 file size. The vendored gifenc 1.0.3

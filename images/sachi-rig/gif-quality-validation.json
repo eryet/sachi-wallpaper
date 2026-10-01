@@ -1,0 +1,102 @@
+{
+  "exports": [
+    {
+      "preset": "high",
+      "background": "transparent",
+      "size": [
+        1280,
+        892
+      ],
+      "frames": 300,
+      "duration": 10,
+      "bytes": 52533461,
+      "elapsedSeconds": 22.057,
+      "previewPreserved": true
+    },
+    {
+      "preset": "ultra",
+      "background": "preview",
+      "size": [
+        1920,
+        1338
+      ],
+      "frames": 1000,
+      "duration": 20,
+      "bytes": 129653421,
+      "elapsedSeconds": 120.188,
+      "previewPreserved": true
+    }
+  ],
+  "cancelledCleanly": true,
+  "mobileFullResolution": true,
+  "noPageErrors": true,
+  "decodedWithPillow": {
+    "high": {
+      "framesDecoded": 300,
+      "size": [
+        1280,
+        892
+      ],
+      "durationSeconds": 10.0,
+      "repeatForever": true,
+      "comparisons": [
+        {
+          "frame": 0,
+          "meanChannelError": 2.492,
+          "alphaExact": true
+        },
+        {
+          "frame": 60,
+          "meanChannelError": 2.491,
+          "alphaExact": true
+        },
+        {
+          "frame": 180,
+          "meanChannelError": 2.494,
+          "alphaExact": true
+        },
+        {
+          "frame": 299,
+          "meanChannelError": 2.492,
+          "alphaExact": true
+        }
+      ]
+    },
+    "ultra": {
+      "framesDecoded": 1000,
+      "size": [
+        1920,
+        1338
+      ],
+      "durationSeconds": 20.0,
+      "repeatForever": true,
+      "comparisons": [
+        {
+          "frame": 0,
+          "meanChannelError": 2.534,
+          "alphaExact": true
+        },
+        {
+          "frame": 196,
+          "meanChannelError": 2.546,
+          "alphaExact": true
+        },
+        {
+          "frame": 500,
+          "meanChannelError": 2.543,
+          "alphaExact": true
+        },
+        {
+          "frame": 750,
+          "meanChannelError": 2.54,
+          "alphaExact": true
+        },
+        {
+          "frame": 999,
+          "meanChannelError": 2.534,
+          "alphaExact": true
+        }
+      ]
+    }
+  }
+}

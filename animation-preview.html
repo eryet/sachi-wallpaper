@@ -77,7 +77,8 @@
       <fieldset class="gif-export"><legend>Export GIF</legend>
         <p>One full loop using the current motion group, movement settings, and playback speed.</p>
         <label for="gif-preset">Export preset</label>
-        <select id="gif-preset" disabled><option value="compact">Compact · 360 px · up to 12 fps</option><option value="balanced" selected>Balanced · 640 px · up to 20 fps</option><option value="detailed">Detailed · 960 px · up to 25 fps</option></select>
+        <select id="gif-preset" disabled><option value="compact">Compact · 360 px · up to 12 fps</option><option value="balanced" selected>Balanced · 640 px · up to 20 fps</option><option value="detailed">Detailed · 960 px · up to 25 fps</option><option value="high">High · 1280 px · up to 30 fps</option><option value="ultra">Ultra · 1920 px · up to 50 fps</option></select>
+        <p>Size is the longest edge, independent of your window size. High and Ultra produce larger files and take longer to export.</p>
         <label for="gif-background">GIF background</label>
         <select id="gif-background" disabled><option value="preview">Match preview</option><option value="transparent">Transparent</option></select>
         <p id="gif-summary"></p><button id="export-gif" class="full" disabled>Export animation GIF</button>
