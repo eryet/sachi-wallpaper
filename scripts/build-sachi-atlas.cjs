@@ -38,13 +38,24 @@ async function build() {
     const raw=await sharp({create:{width,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}})
       .composite(parts.map(node=>({input:layerTiles.get(node.id).png,left:node.bounds[0]-x,top:node.bounds[1]-y})))
       .raw().toBuffer();
-    const masks={interior:Buffer.from(raw),upper:Buffer.alloc(raw.length),lower:Buffer.alloc(raw.length)};
+    const skinNode=nodes.get(`eyelid-${side}-underpaint`);
+    const skin=await sharp(layerTiles.get(skinNode.id).png)
+      .extract({left:x-skinNode.bounds[0],top:y-skinNode.bounds[1],width,height}).raw().toBuffer();
+    const masks={interior:Buffer.from(raw),upper:Buffer.alloc(raw.length),lower:Buffer.alloc(raw.length),closed:Buffer.from(raw)};
+    // Replace every eye-owned ink/iris sample, including pixels outside the
+    // fitted opening. Preserve adjacent source skin when it matches the fill.
+    // This removes old lash ghosts without an antialiased patch-shaped seam.
+    for(let offset=0;offset<raw.length;offset+=4){
+      const distance=Math.max(...[0,1,2].map(c=>Math.abs(raw[offset+c]-skin[offset+c])));
+      const blend=Math.max(0,Math.min(1,(distance-3)/7));
+      for(let c=0;c<3;c++)masks.closed[offset+c]=Math.round(raw[offset+c]*(1-blend)+skin[offset+c]*blend);
+    }
     const geometry=eyeCurves(side,0);
     for(let column=0;column<width;column++) {
       const upperY=curveY(geometry.upper,x+column+.5),lowerY=curveY(geometry.lower,x+column+.5);
       for(let row=0;row<height;row++) {
         const offset=(row*width+column)*4,r=raw[offset],g=raw[offset+1],b=raw[offset+2],a=raw[offset+3];
-        const ink=a>0&&r<48&&g<48&&b<65&&b-r<35,worldY=y+row+.5;
+        const ink=a>0&&r<80&&g<85&&b<120&&b-r<55,worldY=y+row+.5;
         const which=ink&&worldY<upperY+5?'upper':ink&&worldY>lowerY-6?'lower':null;
         if(which){raw.copy(masks[which],offset,offset,offset+4);masks.interior[offset+3]=0;}
       }

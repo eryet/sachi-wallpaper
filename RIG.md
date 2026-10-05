@@ -4,7 +4,7 @@ Open **[rig-editor.html](rig-editor.html)** to work on individual parts and comp
 the wallpaper loop. This is a custom browser rig with Live2D-style layer controls,
 mesh deformation, and parameter tracks. It is not a native Cubism project.
 
-The model contains **52 paint layers**, five hierarchy groups, and eight inferred
+The model contains **52 paint layers**, five hierarchy groups, and nine inferred
 hidden fills. Start with Hair, then Face, then Shirt using the layer filters.
 The default 20-second loop adds local hair and collar follow-through, small head
 rotation, and brow motion to the strong gust, breathing, and curved blinks.
@@ -52,6 +52,11 @@ native pixel resolution. Skin and neck pixels stay behind the hair, including
 the transparent edge below the neck contact. The concealed back-hair surface
 uses nearby bob shading; a rounded ear extension joins the visible ear's colors.
 These concealed surfaces remain inferred and hidden in the source SVG.
+
+The thick right eyebrow is separated from the bangs; the thinner line below it
+stays with the face as an eyelid crease. A concealed brow continuation follows
+the eyebrow's expression controls, while the crossing fringe tips render in
+front and retain their own wind movement.
 
 The top fringe reveals a fitted forehead surface instead of a generic skin
 gradient. Clean source skin samples determine its shading. Crown backing also
@@ -131,7 +136,7 @@ controls. The layer editor and wallpaper also support your saved custom rig.
 its existing atlas and do not change the original PNG or SVG:
 
 - `images/sachi-rig/sachi-layers.ora`: OpenRaster document with 52 visible
-  artwork layers and eight hidden fills. Its layer stack is flat for portability.
+  artwork layers and nine hidden fills. Its layer stack is flat for portability.
 - `images/sachi-rig/layers/`: aligned transparent PNG layers, each 708 × 970.
 - `images/sachi-rig/layers.json`: identifiers, parent hierarchy, pivots, source
   hash, and original canvas placement. Stack order is bottom to top; the crop
@@ -174,6 +179,16 @@ reviewed cut landmarks, dark hair shading behind the right bang, and reassembly
 of the exported OpenRaster layers.
 `python scripts/verify_sachi_forehead.py` compares exported hidden fills with
 source skin and crown swatches and checks the forehead fit on held-out samples.
+With the preview server running, `node scripts/verify-sachi-brows.cjs` checks
+eyebrow isolation from wind, facial controls, and fringe occlusion in Chromium,
+WebKit, and the Canvas fallback. `node scripts/verify-sachi-neck.cjs` checks the
+neck joins and fallback mesh coverage. Both accept `PLAYWRIGHT_MODULE` for a
+shared Playwright installation and `SACHI_PREVIEW_URL` for another server URL.
+`node scripts/verify-sachi-details.cjs` checks that old lash ink clears during
+blinks, the ear/back-hair join remains opaque throughout the loop at normal and
+maximum strength, and the rendered first and last frames agree in all three
+renderer paths. The atlas includes a fitted closed-eye skin texture so the
+original lash tips cannot remain behind as a second outline.
 
 The renderer joins adjacent parts with identical motion into cached textures
 before warping them. Editing a part gives it an independent mesh, while other

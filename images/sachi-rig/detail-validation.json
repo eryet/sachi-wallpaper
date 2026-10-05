@@ -1,0 +1,70 @@
+{
+  "sourceSha256": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
+  "results": [
+    {
+      "mode": "chromium",
+      "lashSamples": 11648,
+      "minClearedLashRed": 106,
+      "earSamples": 28800,
+      "minEarAlpha": 255,
+      "frames": 160,
+      "loopMatches": 2,
+      "darkestLashSample": {
+        "side": "left",
+        "closure": 0.4,
+        "x": 117,
+        "y": 316
+      }
+    },
+    {
+      "mode": "canvas",
+      "lashSamples": 11648,
+      "minClearedLashRed": 106,
+      "earSamples": 28800,
+      "minEarAlpha": 255,
+      "frames": 160,
+      "loopMatches": 2,
+      "darkestLashSample": {
+        "side": "left",
+        "closure": 0.4,
+        "x": 117,
+        "y": 316
+      }
+    },
+    {
+      "mode": "webkit",
+      "lashSamples": 11648,
+      "minClearedLashRed": 106,
+      "earSamples": 28800,
+      "minEarAlpha": 255,
+      "frames": 160,
+      "loopMatches": 2,
+      "darkestLashSample": {
+        "side": "left",
+        "closure": 0.4,
+        "x": 117,
+        "y": 316
+      }
+    }
+  ],
+  "reviewDate": "2026-10-05",
+  "ui": {
+    "wallpaper": {
+      "sha": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
+      "animated": true,
+      "overflow": false
+    },
+    "phone": true,
+    "editor": true,
+    "gif": {
+      "name": "sachi-compact-2x.gif",
+      "status": "Ready \u00b7 232 \u00d7 360 \u00b7 10.0 seconds",
+      "previewPreserved": true,
+      "decodedFrames": 120,
+      "decodedDurationMs": 10000,
+      "infiniteLoop": true
+    },
+    "localFileWithoutPixelReadback": true,
+    "pageErrors": []
+  }
+}

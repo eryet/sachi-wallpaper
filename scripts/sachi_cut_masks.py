@@ -48,6 +48,13 @@ def refine_hair_collar_masks(labels, im, indices):
             # off the shirt. At hair contacts the split is inside shared ink.
             while top[0,x]>center-5 and np.mean(im[top[0,x]-1,x,:3])<50:
                 top[0,x]-=1
+            if 290<=x<=457:
+                # Cyan skin is much brighter than the dark neck shadow. Its
+                # partly blended collar ink can exceed the absolute threshold
+                # above; keep that antialiasing with the moving collar too.
+                skin_light=np.median(im[center-9:center-4,x,:3].mean(axis=1))
+                while top[0,x]>center-5 and np.mean(im[top[0,x]-1,x,:3])<skin_light*.85:
+                    top[0,x]-=1
     contact_left=(xx>=128)&(xx<=171)
     contact_right=(xx>=513)&(xx<=556)
     top=np.where(contact_left,seam-3,np.where(contact_right,seam-2,top))

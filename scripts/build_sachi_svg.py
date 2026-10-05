@@ -19,6 +19,8 @@ from sachi_face_cut import refine_left_face_cut, left_face_contour
 from sachi_right_bang import refine_right_bang, concealed_right_samples, contours
 from sachi_forehead_fill import forehead_field, crown_field, row_regions
 from sachi_cheek_fill import cheek_neck_field, refine_cheek_edges, BOX as CHEEK_BOX
+from sachi_neck_fill import neck_join_samples
+from sachi_brow_cut import refine_right_brow, refine_left_brow, CONCEALED_BROW
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "images/sachi_ai_scale.png"
@@ -48,7 +50,9 @@ PARTS = [
     ("ear-inner", "Inner ear", "ear-right", (544,421), [(529,388),(553,379),(563,390),(571,418),(559,438),(537,463),(524,457),(527,434),(536,425),(526,413)]),
     ("hair-clip", "Hair clip", "head", (582,189), [(518,177),(519,195),(552,201),(577,211),(593,207),(603,219),(638,247),(654,217),(647,181),(629,159),(609,156),(598,179),(581,171),(569,182),(532,178)]),
     ("brow-left", "Left eyebrow", "head", (142,277), [(87,264),(121,251),(160,250),(182,266),(195,290),(201,316),(182,309),(161,286),(142,285),(106,303),(91,305)]),
-    ("brow-right", "Right eyebrow", "head", (360,307), [(305,316),(337,300),(353,291),(368,292),(392,305),(420,327),(403,327),(376,311),(359,306),(334,312)]),
+    # The thick upper stroke is the eyebrow; the thin arch below is the lid
+    # crease. Its upper edge is partly concealed by the separated fringe.
+    ("brow-right", "Right eyebrow", "head", (360,307), [(299,263),(317,259),(335,255),(348,250),(355,250),(369,255),(386,264),(403,273),(420,283),(435,294),(439,301),(430,296),(417,289),(403,282),(386,276),(369,272),(351,268),(332,265),(315,264),(299,265)]),
     ("eye-left-white", "Left eye white", "eye-left", (146,356), [(90,332),(108,317),(133,304),(149,299),(165,308),(183,329),(196,347),(197,365),(183,388),(170,402),(129,405),(111,393),(99,379),(92,359)]),
     ("iris-left", "Left iris", "eye-left", (159,359), [(131,326),(159,325),(175,333),(185,350),(185,369),(175,387),(157,394),(141,389),(130,375),(125,354)]),
     ("pupil-left", "Left pupil", "iris-left", (162,361), [(157,353),(167,353),(169,368),(157,370)]),
@@ -128,6 +132,8 @@ def build():
     cut_report=refine_hair_collar_masks(labels,im,indices)
     face_cut_report=refine_left_face_cut(labels,im,indices)
     right_bang_report=refine_right_bang(labels,im,indices)
+    refine_right_brow(labels,im,indices)
+    refine_left_brow(labels,im,indices)
     _,_,strand_inner,strand_outer=contours(im)
     cheek_edge_report=refine_cheek_edges(labels,im,indices,strand_inner,strand_outer)
 
@@ -243,6 +249,22 @@ def build():
         element('path',{'data-surface':surface,'shape-rendering':'crispEdges',
             'fill':f'#{r:02x}{g:02x}{b:02x}','fill-opacity':str(a/255),'d':''.join(paths)},parent)
 
+    # The bob moves behind the stationary ear. Extend its local source colour
+    # into the ear cutout so the two silhouettes cannot uncover a bright crack.
+    ear_backing=defaultdict(list)
+    for y in range(346,504):
+        ear_pixels=np.flatnonzero(np.isin(labels[y],[indices['ear-right'],indices['ear-inner']]))
+        if not len(ear_pixels):continue
+        left,right=int(ear_pixels[0]),int(ear_pixels[-1])
+        for x in range(left-4,right+5):
+            if not im[y,x,3]:continue
+            sample_x=min(width-1,right+7)
+            color=tuple(int(v) for v in im[y,sample_x,:3])
+            ear_backing[color].append(f'M{x} {y}h1v1h-1z')
+    for color,paths in ear_backing.items():
+        element('path',{'data-surface':'ear-hair-join','d':''.join(paths),
+            'fill':'#'+''.join(f'{v:02x}' for v in color),'shape-rendering':'crispEdges'},hidden_groups['hair-underpaint'])
+
     # A rounded concealed ear contour avoids a rectangular colour patch when
     # the bang moves away. Visible ear pixels still render above this surface.
     ear_gradient=element('linearGradient',{'id':'ear-concealed-shading',
@@ -299,11 +321,20 @@ def build():
             if ident=='face-underpaint':attrs['clip-path']='url(#face-left-contour)'
             element('path',attrs,patch)
 
+    # Conceal the face/neck and neck/collar cuts with their own source shading.
+    # This overlap stays hidden at rest and follows the same mesh as the neck.
+    neck_join=element('g',{'data-surface':'neck-joins','clip-path':'url(#body-underpaint-cheek-neck-shape)'},hidden_groups['body-underpaint'])
+    samples=defaultdict(list)
+    for x,y,color in neck_join_samples(im,labels,indices):
+        samples[color].append(f'M{x} {y}h1v1h-1z')
+    for color,paths in samples.items():
+        element('path',{'d':''.join(paths),'fill':'#'+''.join(f'{v:02x}' for v in color),'shape-rendering':'crispEdges'},neck_join)
+
     # Fit local skin shading to the surrounding visible face for closed eyes.
     # These inferred vector gradients remain hidden in the original rest pose.
     face_index=next(i for i,part in enumerate(PARTS) if part[0]=="face")
     yy,xx=np.mgrid[:height,:width]
-    for side,(left,top,right,bottom) in [("left",(88,299,202,405)),("right",(303,315,447,434))]:
+    for side,(left,top,right,bottom) in [("left",(88,299,202,408)),("right",(303,315,447,434))]:
         ring=(labels==face_index)&(xx>left-12)&(xx<right+12)&(yy>top-12)&(yy<bottom+12)&(im[:,:,3]>250)
         coordinates=np.column_stack([np.ones(np.count_nonzero(ring)),xx[ring],yy[ring]])
         colors=im[ring,:3].astype(float)
@@ -336,6 +367,10 @@ def build():
 
     for ident,_,_,_,_ in PARTS:
         ensure(ident)
+
+    brow=element('g',{'id':'brow-right-continuation','class':'underpaint',
+        'style':'display:none','data-reconstructed':'true','data-role':'brow-continuation'},containers['brow-right'])
+    element('path',{'d':CONCEALED_BROW,'fill':'#02040c'},brow)
 
     # Concealed hair ends are inferred from the neighbouring source shading.
     # Keep them separate and hidden in the SVG/rest pose. The rig draws these

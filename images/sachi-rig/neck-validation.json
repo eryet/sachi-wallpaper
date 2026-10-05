@@ -1,0 +1,137 @@
+{
+  "sourceSha256": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
+  "strengths": [
+    1,
+    1.5
+  ],
+  "loopSeconds": 20,
+  "sampleIntervalSeconds": 0.25,
+  "results": [
+    {
+      "mode": "chromium",
+      "renderer": "webgl",
+      "frames": 160,
+      "neckSamples": 24640,
+      "maxNeckRed": 17,
+      "minNeckAlpha": 255,
+      "joinLandmarks": [
+        {
+          "x": 347,
+          "y": 709,
+          "rgba": [
+            0,
+            4,
+            14,
+            255
+          ]
+        },
+        {
+          "x": 340,
+          "y": 710,
+          "rgba": [
+            0,
+            5,
+            12,
+            255
+          ]
+        },
+        {
+          "x": 321,
+          "y": 716,
+          "rgba": [
+            0,
+            4,
+            11,
+            255
+          ]
+        }
+      ],
+      "minMeshAlpha": 255,
+      "meshSamples": 399000
+    },
+    {
+      "mode": "canvas",
+      "renderer": "canvas",
+      "frames": 160,
+      "neckSamples": 24640,
+      "maxNeckRed": 10,
+      "minNeckAlpha": 255,
+      "joinLandmarks": [
+        {
+          "x": 347,
+          "y": 709,
+          "rgba": [
+            1,
+            6,
+            18,
+            255
+          ]
+        },
+        {
+          "x": 340,
+          "y": 710,
+          "rgba": [
+            0,
+            8,
+            18,
+            255
+          ]
+        },
+        {
+          "x": 321,
+          "y": 716,
+          "rgba": [
+            0,
+            2,
+            5,
+            255
+          ]
+        }
+      ],
+      "minMeshAlpha": 255,
+      "meshSamples": 399000
+    },
+    {
+      "mode": "webkit",
+      "renderer": "webgl",
+      "frames": 160,
+      "neckSamples": 24640,
+      "maxNeckRed": 17,
+      "minNeckAlpha": 255,
+      "joinLandmarks": [
+        {
+          "x": 347,
+          "y": 709,
+          "rgba": [
+            0,
+            4,
+            14,
+            255
+          ]
+        },
+        {
+          "x": 340,
+          "y": 710,
+          "rgba": [
+            0,
+            5,
+            13,
+            255
+          ]
+        },
+        {
+          "x": 321,
+          "y": 716,
+          "rgba": [
+            0,
+            4,
+            11,
+            255
+          ]
+        }
+      ],
+      "minMeshAlpha": 255,
+      "meshSamples": 399000
+    }
+  ]
+}

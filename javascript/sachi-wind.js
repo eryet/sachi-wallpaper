@@ -243,10 +243,11 @@
         const c=((x1-x0)*(d[2][0]-d[0][0])-(x2-x0)*(d[1][0]-d[0][0]))/det;
         const b=((d[1][1]-d[0][1])*(y2-y0)-(d[2][1]-d[0][1])*(y1-y0))/det;
         const e=((x1-x0)*(d[2][1]-d[0][1])-(x2-x0)*(d[1][1]-d[0][1]))/det;
-        const center=[(d[0][0]+d[1][0]+d[2][0])/3,(d[0][1]+d[1][1]+d[2][1])/3];
         ctx.save();ctx.beginPath();
-        // A subpixel overlap prevents antialiased cracks between triangles.
-        d.forEach(([x,y],j)=>{const length=Math.hypot(x-center[0],y-center[1]),q=[x+.55*(x-center[0])/length,y+.55*(y-center[1])/length];if(j)ctx.lineTo(...q);else ctx.moveTo(...q);});
+        // Offset each edge by a full pixel. A radial vertex expansion leaves
+        // much less overlap at diagonal edges, exposing the pale layers below.
+        const normals=d.map(([x,y],j)=>{const next=d[(j+1)%3],dx=next[0]-x,dy=next[1]-y,length=Math.hypot(dx,dy);return [dy/length,-dx/length];});
+        d.forEach(([x,y],j)=>{const a=normals[(j+2)%3],b=normals[j],scale=1/(1+a[0]*b[0]+a[1]*b[1]),q=[x+(a[0]+b[0])*scale,y+(a[1]+b[1])*scale];if(j)ctx.lineTo(...q);else ctx.moveTo(...q);});
         ctx.closePath();ctx.clip();ctx.setTransform(a,b,c,e,d[0][0]-a*x0-c*y0,d[0][1]-b*x0-e*y0);drawSource();ctx.restore();
       }
       return this.canvas;

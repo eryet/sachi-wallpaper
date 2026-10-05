@@ -1,5 +1,5 @@
 {
-  "sourceSha256": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "sourceSha256": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
   "exactSourceRGBA": true,
   "leftFaceFillClipped": true,
   "rightBangBackingUsesHairShading": true,
@@ -14,6 +14,16 @@
     "right collar edge",
     "outer collar rim",
     "neck skin above collar",
+    "cyan neck collar antialiasing",
+    "right neck collar antialiasing",
+    "right eyebrow inner tip",
+    "right eyebrow arch",
+    "right eyebrow outer stroke",
+    "right eyelid crease",
+    "center fringe over eyebrow",
+    "right fringe over eyebrow",
+    "left fringe crossing eyebrow",
+    "left eyebrow arch",
     "left temple skin",
     "skin beside left eye",
     "left inner lock edge",
@@ -27,7 +37,7 @@
   ],
   "layerExport": {
     "artworkLayers": 52,
-    "hiddenFills": 8,
+    "hiddenFills": 9,
     "size": [
       708,
       970

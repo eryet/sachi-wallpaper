@@ -13,7 +13,7 @@
     130,
     81
   ],
-  "sourceSha256": "2c9aa9c16f27d3ca2c698b40731792463d8f4d3d989124a82dd00384617be0e3",
+  "sourceSha256": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
   "order": "bottom-to-top",
   "layers": [
     {
@@ -483,6 +483,18 @@
       "visible": true,
       "kind": "art",
       "file": "layers/brow-right.png"
+    },
+    {
+      "id": "brow-right-continuation",
+      "name": "Brow Right Continuation",
+      "parent": "brow-right",
+      "pivot": [
+        0,
+        0
+      ],
+      "visible": false,
+      "kind": "underpaint",
+      "file": "layers/brow-right-continuation.png"
     },
     {
       "id": "eye-left-white",

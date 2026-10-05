@@ -11,29 +11,29 @@
     708,
     970
   ],
-  "paths": 87890,
-  "merged_rectangles": 242264,
-  "bytes": 12894910,
+  "paths": 87879,
+  "merged_rectangles": 242265,
+  "bytes": 13430744,
   "cutRefinement": {
     "revision": "hair-collar-pixel-cuts-1",
-    "reassignedSourcePixels": 5523,
+    "reassignedSourcePixels": 5457,
     "unchangedSourceRGBA": true
   },
   "faceCutRefinement": {
     "revision": "left-hair-face-cut-1",
-    "reassignedSourcePixels": 2074,
+    "reassignedSourcePixels": 2101,
     "unchangedSourceRGBA": true
   },
   "rightBangRefinement": {
     "revision": "right-bang-ink-cut-1",
-    "reassignedSourcePixels": 8475,
+    "reassignedSourcePixels": 8223,
     "unchangedSourceRGBA": true
   },
   "foreheadFill": {
-    "cleanSkinSamples": 14821,
-    "holdoutSamples": 2116,
-    "holdoutMeanChannelError": 1.374,
-    "holdout95PercentChannelError": 3.899
+    "cleanSkinSamples": 15484,
+    "holdoutSamples": 2215,
+    "holdoutMeanChannelError": 1.386,
+    "holdout95PercentChannelError": 3.856
   },
   "cheekNeckFill": {
     "box": [
@@ -42,8 +42,8 @@
       462,
       665
     ],
-    "interpolatedPixels": 12802,
-    "nearestSampleFallbackPixels": 235,
+    "interpolatedPixels": 12837,
+    "nearestSampleFallbackPixels": 257,
     "method": "edge-aligned source colour interpolation",
     "edgeRefinement": {
       "reassignedEdgePixels": 346,
@@ -70,8 +70,8 @@
         323,
         644
       ],
-      "source_pixels": 10101,
-      "paths": 3182
+      "source_pixels": 10004,
+      "paths": 3091
     },
     {
       "id": "face",
@@ -81,8 +81,8 @@
         293,
         472
       ],
-      "source_pixels": 94434,
-      "paths": 6203
+      "source_pixels": 95081,
+      "paths": 6348
     },
     {
       "id": "hair-crown",
@@ -92,8 +92,8 @@
         321,
         83
       ],
-      "source_pixels": 28212,
-      "paths": 3922
+      "source_pixels": 28107,
+      "paths": 3907
     },
     {
       "id": "hair-fringe-left",
@@ -103,8 +103,8 @@
         195,
         70
       ],
-      "source_pixels": 26877,
-      "paths": 6219
+      "source_pixels": 26986,
+      "paths": 6278
     },
     {
       "id": "hair-fringe-center",
@@ -114,8 +114,8 @@
         267,
         66
       ],
-      "source_pixels": 27640,
-      "paths": 2762
+      "source_pixels": 27441,
+      "paths": 2668
     },
     {
       "id": "hair-fringe-right",
@@ -125,8 +125,8 @@
         331,
         56
       ],
-      "source_pixels": 19348,
-      "paths": 2002
+      "source_pixels": 18304,
+      "paths": 1815
     },
     {
       "id": "hair-side-left",
@@ -136,8 +136,8 @@
         79,
         263
       ],
-      "source_pixels": 14678,
-      "paths": 3870
+      "source_pixels": 14705,
+      "paths": 3876
     },
     {
       "id": "hair-side-right",
@@ -202,8 +202,8 @@
         142,
         277
       ],
-      "source_pixels": 4344,
-      "paths": 1109
+      "source_pixels": 4235,
+      "paths": 1038
     },
     {
       "id": "brow-right",
@@ -213,8 +213,8 @@
         360,
         307
       ],
-      "source_pixels": 1333,
-      "paths": 509
+      "source_pixels": 2007,
+      "paths": 661
     },
     {
       "id": "eye-left-white",
@@ -466,8 +466,8 @@
         361,
         679
       ],
-      "source_pixels": 21547,
-      "paths": 4570
+      "source_pixels": 21644,
+      "paths": 4655
     },
     {
       "id": "collar-left",

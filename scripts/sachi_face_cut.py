@@ -47,6 +47,10 @@ def refine_left_face_cut(labels,im,indices):
     # Rejoin that edge to its hair mesh, leaving the face's own outline intact.
     edge=junction&(yy>=285)&(xx<contour)&(labels==indices['face'])
     labels[edge]=indices['hair-side-left']
+    # The coarse face polygon intersected the triangular end of the lock at
+    # the jaw. Keep that detached ink fragment with the moving hair.
+    tip=(yy>=580)&(yy<=589)&(xx>=135)&(xx<=141)&(im[:,:,0]<50)&(labels==indices['face'])
+    labels[tip]=indices['hair-side-left']
     changed=(before!=labels)&(im[:,:,3]>0)
     return {'revision':'left-hair-face-cut-1','reassignedSourcePixels':int(changed.sum()),
             'unchangedSourceRGBA':True}

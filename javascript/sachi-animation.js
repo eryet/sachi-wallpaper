@@ -16,8 +16,8 @@
   // Cubic curves follow the inside edges of the original upper/lower lashes.
   // Closing the aperture moves the upper lid most of the way; the iris stays put.
   const EYES={
-    left:{upper:[[98,348],[118,322],[145,317],[187,355]],lower:[[98,348],[111,398],[165,412],[187,355]],region:'M92 333 L108 319 L132 306 Q149 297 162 311 L180 328 L193 349 L194 362 L184 384 L171 398 L131 402 L113 392 L101 378 L95 359 Z'},
-    right:{upper:[[322,366],[347,334],[382,337],[435,385]],lower:[[322,366],[326,414],[386,440],[435,385]],region:'M307 341 L325 328 L351 320 Q375 314 398 333 L422 350 L435 366 L437 388 L428 409 L405 430 L375 425 L343 415 L325 403 L313 379 L310 357 Z'}
+    left:{upper:[[98,348],[118,322],[145,317],[187,355]],lower:[[98,348],[111,398],[165,412],[187,355]]},
+    right:{upper:[[322,366],[347,334],[382,337],[435,385]],lower:[[322,366],[326,414],[386,440],[435,385]]}
   };
   function eyeCurves(side,amount) {
     const eye=EYES[side],b=clamp(amount,0,1);
@@ -183,8 +183,8 @@
         const upperY=[],lowerY=[];
         for(let x=0;x<width;x++){upperY.push(curveY(geometry.upper,x+source.x+.5));lowerY.push(curveY(geometry.lower,x+source.x+.5));}
         const textures=this.atlas.eyeTextures?.[side];
-        if(!textures?.interior||!textures.upper||!textures.lower)throw new Error('The eye textures are missing. Rebuild the animation atlas.');
-        this.eyes[side]={...source,original:source.canvas,work:makeCanvas(),paint:makeCanvas(),textures,upperY,lowerY,region:new Path2D(geometry.region),skin:this.nodes.get(`eyelid-${side}-underpaint`)};
+        if(!textures?.interior||!textures.upper||!textures.lower||!textures.closed)throw new Error('The eye textures are missing. Rebuild the animation atlas.');
+        this.eyes[side]={...source,original:source.canvas,work:makeCanvas(),paint:makeCanvas(),textures,upperY,lowerY};
       }
     }
     drawEye(side,amount) {
@@ -192,12 +192,10 @@
       if(amount<=.00001){this.context.drawImage(this.atRest?eye.original:eye.canvas,eye.x,eye.y);return;}
       const ctx=eye.work.getContext('2d');
       ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,eye.work.width,eye.work.height);ctx.translate(-eye.x,-eye.y);
-      ctx.drawImage(eye.canvas,eye.x,eye.y);
-      // Replace only the eye opening with skin; the surrounding source skin and
-      // cheek details are left in place. Then reveal the stationary eyeball.
-      ctx.save();ctx.clip(eye.region);
-      const [sx,sy,w,h]=eye.skin.frame,[x,y]=eye.skin.bounds;
-      ctx.drawImage(this.image,sx,sy,w,h,x,y,w,h);ctx.restore();
+      // The baked fill clears all source lashes, including antialiased tips
+      // beyond the fitted eye curve, while retaining the source skin boundary.
+      const [sx,sy,w,h]=eye.textures.closed.frame;
+      ctx.drawImage(this.image,sx,sy,w,h,eye.x,eye.y,w,h);
       const curves=eyeCurves(side,amount);
       if(amount<.99999) {
         ctx.save();ctx.clip(eyePath(curves.upper,curves.lower));
@@ -303,7 +301,7 @@
         run.key='rig-run-'+index;
         if(run.roots)continue;
         if(run.eye){const eye=this.eyes[run.eye==='eye-left'?'left':'right'];run.bounds=[eye.x,eye.y,eye.original.width,eye.original.height];continue;}
-        const parts=run.ids.map(id=>this.nodes.get(id)).sort((a,b)=>(b.role==='hair-tip-continuation')-(a.role==='hair-tip-continuation'));
+        const parts=run.ids.map(id=>this.nodes.get(id)).sort((a,b)=>(!!b.role?.endsWith('continuation'))-(!!a.role?.endsWith('continuation')));
         const x=Math.min(...parts.map(n=>n.bounds[0])),y=Math.min(...parts.map(n=>n.bounds[1]));
         const width=Math.max(...parts.map(n=>n.bounds[0]+n.bounds[2]))-x,height=Math.max(...parts.map(n=>n.bounds[1]+n.bounds[3]))-y;
         const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d');
@@ -398,7 +396,7 @@
         const composite=this.composites.get(id);
         // The continuation shares its lock's transform and mesh. Lay it down
         // first so the original ink and antialiased cut edge remain on top.
-        const tips=node.children.filter(child=>this.nodes.get(child).role==='hair-tip-continuation');
+        const tips=node.children.filter(child=>this.nodes.get(child).role?.endsWith('continuation'));
         for(const child of tips)draw(child);
         if(paint&&composite)ctx.drawImage(composite.canvas,composite.x,composite.y);
         else if(paint&&node.frame) {
