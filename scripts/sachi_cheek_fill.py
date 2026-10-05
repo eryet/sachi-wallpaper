@@ -5,7 +5,7 @@ from PIL import Image, ImageFilter
 BOX=(300,410,462,665)
 
 
-def refine_cheek_edges(labels,im,indices,inner,outer):
+def refine_cheek_edges(labels,im,indices,inner,outer,main_inner):
     """Keep dark antialiasing with the moving strand, not the exposed skin."""
     field,_=cheek_neck_field(im,labels,indices)
     count=0
@@ -22,6 +22,19 @@ def refine_cheek_edges(labels,im,indices,inner,outer):
                 difference=reference-im[y,x,:3].astype(float)
                 if difference.min()<=5 or difference.mean()<=12:break
                 labels[y,x]=indices['hair-face-strand'];count+=int(im[y,x,3]>0)
+    # The other side of the fork belongs to the broad bang. Its thin dark
+    # outline and bright resampling halo must not remain on the exposed skin
+    # when the bang and the cheek strand move independently.
+    for y in range(435,546):
+        edge=int(main_inner[y]);reference=field[y,edge-5].astype(float)
+        for step in range(1,8):
+            x=edge-step
+            if labels[y,x] not in [indices['face'],indices['neck']]:break
+            difference=reference-im[y,x,:3].astype(float)
+            dark=difference.min()>5 and difference.mean()>12
+            bright=difference.max()<-2 and difference.mean()<-5
+            if not (dark or bright):break
+            labels[y,x]=indices['hair-side-right'];count+=int(im[y,x,3]>0)
     return {'reassignedEdgePixels':count,'unchangedSourceRGBA':True}
 
 

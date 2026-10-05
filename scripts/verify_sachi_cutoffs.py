@@ -59,13 +59,43 @@ landmarks={
     'right bang dark face outline':(436,400,'hair-side-right'),
     'right cheek strand':(423,480,'hair-face-strand'),
     'skin inside right hair fork':(443,500,'face'),
+    'right fork upper ink':(444,470,'hair-side-right'),
+    'right fork inner antialiasing':(447,500,'hair-side-right'),
+    'right fork lower antialiasing':(449,520,'hair-side-right'),
     'neck inside right hair fork':(445,540,'neck'),
     'back hair beside right bang':(540,300,'hair-back'),
+    'hair antialiasing beside upper ear':(530,380,'hair-side-right'),
+    'hair antialiasing beside lobe':(520,480,'hair-side-right'),
+    'hair highlight halo beside lobe':(521,480,'hair-side-right'),
+    'back hair above ear':(536,360,'hair-back'),
+    'visible upper ear':(540,380,'ear-right'),
+    'visible inner ear':(550,410,'ear-inner'),
 }
 for name,(x,y,owner) in landmarks.items():
     assert visible[y,x],name+' must be visible'
     assert owners[y,x]==owner,f'{name}: expected {owner}, got {owners[y,x]}'
+# Inspect the fully revealed ear, without the front lock hiding its seam.
+# Samples are on flat skin/rim surfaces, away from the intentional ink folds.
+ear=Image.new('RGBA',(708,970))
+for name in ['face-underpaint','ear-right','ear-inner']:
+    ear.alpha_composite(Image.open(ROOT/f'images/sachi-rig/layers/{name}.png').convert('RGBA'))
+ear=np.array(ear).astype(int)
+ear_steps=[]
+for x,y in [(530,380),(527,412),(526,418),(524,444),(520,480),(520,484),(520,488)]:
+    strip=ear[y,x-2:x+4]
+    assert np.all(strip[:,3]==255),f'Ear backing gap at {x},{y}'
+    step=int(np.abs(np.diff(strip[:,:3],axis=0)).max())
+    assert step<=14,f'Visible ear cut seam at {x},{y}: {step}'
+    ear_steps.append({'point':[x,y],'maximumAdjacentChannelStep':step})
 face_fill=np.array(Image.open(ROOT/'images/sachi-rig/layers/face-underpaint.png').convert('RGBA'))
+fork_steps=[]
+for x,y,reference_x in [(445,480,441),(446,490,442),(447,500,443),(448,510,444),(449,520,445),(450,530,446),(451,540,447)]:
+    assert face_fill[y,x,3]==255,f'Missing cheek backing at {x},{y}'
+    error=int(np.abs(face_fill[y,x,:3].astype(int)-source[y,reference_x,:3].astype(int)).max())
+    assert error<=8,f'Hair outline or mismatched fill remains at {x},{y}: {error}'
+    fork_steps.append({'point':[x,y],'reference':[reference_x,y],'maximumChannelError':error})
+for x,y in [(456,500),(457,530),(458,544)]:
+    assert face_fill[y,x,3]==0,f'Cheek backing extends into the back hair at {x},{y}'
 for x,y in [(80,350),(85,400),(80,470),(105,540)]:
     assert face_fill[y,x,3]==0,f'Hidden skin protrudes behind the left lock at {x},{y}'
 manifest=json.loads((ROOT/'images/sachi-rig/layers.json').read_text())
@@ -90,6 +120,8 @@ for name,bg in [('dark',[22,33,55]),('white',[255,255,255])]:
 result={'sourceSha256':manifest['sourceSha256'],'exactSourceRGBA':True,
     'leftFaceFillClipped':True,
     'rightBangBackingUsesHairShading':True,
+    'revealedEarContinuity':ear_steps,
+    'revealedHairForkContinuity':fork_steps,
     'sourcePixelsAssignedOnce':int(visible.sum()),'cutLandmarks':list(landmarks),
     'layerExport':{'artworkLayers':sum(p['visible'] for p in manifest['layers']),
     'hiddenFills':sum(not p['visible'] for p in manifest['layers']),

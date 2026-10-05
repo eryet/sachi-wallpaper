@@ -1,8 +1,138 @@
 {
-  "sourceSha256": "c1a427dc42f35a59e6b94bba98d45a58422e32244a0cc660f58f113312dab3fe",
+  "sourceSha256": "7bdde2e0b15c0fc6c5e48cdf584b9814ad9214a9e6ed009f20faaefd31bf6cda",
   "exactSourceRGBA": true,
   "leftFaceFillClipped": true,
   "rightBangBackingUsesHairShading": true,
+  "revealedEarContinuity": [
+    {
+      "point": [
+        530,
+        380
+      ],
+      "maximumAdjacentChannelStep": 7
+    },
+    {
+      "point": [
+        527,
+        412
+      ],
+      "maximumAdjacentChannelStep": 6
+    },
+    {
+      "point": [
+        526,
+        418
+      ],
+      "maximumAdjacentChannelStep": 5
+    },
+    {
+      "point": [
+        524,
+        444
+      ],
+      "maximumAdjacentChannelStep": 0
+    },
+    {
+      "point": [
+        520,
+        480
+      ],
+      "maximumAdjacentChannelStep": 2
+    },
+    {
+      "point": [
+        520,
+        484
+      ],
+      "maximumAdjacentChannelStep": 6
+    },
+    {
+      "point": [
+        520,
+        488
+      ],
+      "maximumAdjacentChannelStep": 14
+    }
+  ],
+  "revealedHairForkContinuity": [
+    {
+      "point": [
+        445,
+        480
+      ],
+      "reference": [
+        441,
+        480
+      ],
+      "maximumChannelError": 2
+    },
+    {
+      "point": [
+        446,
+        490
+      ],
+      "reference": [
+        442,
+        490
+      ],
+      "maximumChannelError": 1
+    },
+    {
+      "point": [
+        447,
+        500
+      ],
+      "reference": [
+        443,
+        500
+      ],
+      "maximumChannelError": 2
+    },
+    {
+      "point": [
+        448,
+        510
+      ],
+      "reference": [
+        444,
+        510
+      ],
+      "maximumChannelError": 4
+    },
+    {
+      "point": [
+        449,
+        520
+      ],
+      "reference": [
+        445,
+        520
+      ],
+      "maximumChannelError": 1
+    },
+    {
+      "point": [
+        450,
+        530
+      ],
+      "reference": [
+        446,
+        530
+      ],
+      "maximumChannelError": 5
+    },
+    {
+      "point": [
+        451,
+        540
+      ],
+      "reference": [
+        447,
+        540
+      ],
+      "maximumChannelError": 1
+    }
+  ],
   "sourcePixelsAssignedOnce": 540425,
   "cutLandmarks": [
     "left outline",
@@ -32,8 +162,17 @@
     "right bang dark face outline",
     "right cheek strand",
     "skin inside right hair fork",
+    "right fork upper ink",
+    "right fork inner antialiasing",
+    "right fork lower antialiasing",
     "neck inside right hair fork",
-    "back hair beside right bang"
+    "back hair beside right bang",
+    "hair antialiasing beside upper ear",
+    "hair antialiasing beside lobe",
+    "hair highlight halo beside lobe",
+    "back hair above ear",
+    "visible upper ear",
+    "visible inner ear"
   ],
   "layerExport": {
     "artworkLayers": 52,

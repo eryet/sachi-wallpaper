@@ -21,6 +21,7 @@ from sachi_forehead_fill import forehead_field, crown_field, row_regions
 from sachi_cheek_fill import cheek_neck_field, refine_cheek_edges, BOX as CHEEK_BOX
 from sachi_neck_fill import neck_join_samples
 from sachi_brow_cut import refine_right_brow, refine_left_brow, CONCEALED_BROW
+from sachi_ear_fill import refine_ear_edge, ear_samples, EAR_SHAPE
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "images/sachi_ai_scale.png"
@@ -134,8 +135,11 @@ def build():
     right_bang_report=refine_right_bang(labels,im,indices)
     refine_right_brow(labels,im,indices)
     refine_left_brow(labels,im,indices)
-    _,_,strand_inner,strand_outer=contours(im)
-    cheek_edge_report=refine_cheek_edges(labels,im,indices,strand_inner,strand_outer)
+    refine_ear_edge(labels,im,indices,contours(im)[1])
+    main_inner,_,strand_inner,strand_outer=contours(im)
+    before_cheek_edges=labels.copy()
+    cheek_edge_report=refine_cheek_edges(labels,im,indices,strand_inner,strand_outer,main_inner)
+    fork_fill_mask=np.isin(before_cheek_edges,[indices['face'],indices['neck']])&(labels==indices['hair-side-right'])
 
     # Merge exact-equal neighboring samples horizontally, then vertically.
     # Every nontransparent source sample is represented exactly once.
@@ -267,36 +271,18 @@ def build():
 
     # A rounded concealed ear contour avoids a rectangular colour patch when
     # the bang moves away. Visible ear pixels still render above this surface.
-    ear_gradient=element('linearGradient',{'id':'ear-concealed-shading',
-        'gradientUnits':'userSpaceOnUse','x1':'510','y1':'365','x2':'520','y2':'465'},defs)
-    for offset,(x,y) in [('0',(548,370)),('1',(536,440))]:
-        rgb=im[y,x,:3]
-        element('stop',{'offset':offset,'stop-color':'#'+''.join(f'{v:02x}' for v in rgb)},ear_gradient)
     ear_occlusion=element('clipPath',{'id':'ear-behind-bang','clipPathUnits':'userSpaceOnUse'},defs)
-    element('path',{'d':''.join(f'M470 {y}H{int(right_edge[y])+1}v1H470z' for y in range(353,492))},ear_occlusion)
+    element('path',{'d':''.join(f'M470 {y}H{int(right_edge[y])+5}v1H470z' for y in range(354,501))},ear_occlusion)
     ear=element('g',{'data-surface':'concealed-ear','clip-path':'url(#ear-behind-bang)'},hidden_groups['face-underpaint'])
-    ear_shape='M552 355 C527 350 513 365 508 389 L501 428 C497 450 495 470 509 485 Q520 493 540 480 L577 443 L583 396 L573 367 Z'
-    element('path',{'d':ear_shape,'fill':'url(#ear-concealed-shading)'},ear)
     ear_clip=element('clipPath',{'id':'concealed-ear-contour'},defs)
-    element('path',{'d':ear_shape},ear_clip)
-    rgb=im[480,530,:3]
-    element('path',{'d':'M497 455 Q510 477 535 466 L560 440 L582 419 L586 459 Q551 500 518 495 L493 480 Z',
-        'fill':'#'+''.join(f'{v:02x}' for v in rgb),'clip-path':'url(#concealed-ear-contour)'},ear)
+    element('path',{'d':EAR_SHAPE},ear_clip)
     ear_join=defaultdict(list)
-    for y in range(360,491):
-        edge=int(right_edge[y]);samples=im[y,edge+1:edge+10,:3].astype(float)
-        valid=(samples[:,0]>65)&(samples[:,2]>110)
-        if not valid.any():continue
-        target=np.median(samples[valid][:3],axis=0)
-        base=im[480,530,:3] if y>=473 else (im[370,548,:3].astype(float)*(1-(y-360)/130)+im[440,536,:3].astype(float)*((y-360)/130))
-        for x in range(edge-24,edge+2):
-            u=np.clip((x-edge+24)/18,0,1);u=u*u*(3-2*u)
-            color=tuple(np.rint(base*(1-u)+target*u).astype(int))
-            ear_join[color].append(f'M{x} {y}h1v1h-1z')
+    for x,y,color in ear_samples(im,labels,indices,right_edge):
+        ear_join[color].append(f'M{x} {y}h1v1h-1z')
     for color,paths in ear_join.items():
         element('path',{'d':''.join(paths),'fill':'#'+''.join(f'{v:02x}' for v in color),
             'shape-rendering':'crispEdges','clip-path':'url(#concealed-ear-contour)'},ear)
-    element('path',{'d':ear_shape,'fill':'none','stroke':'#040713','stroke-width':'2.5','stroke-linejoin':'round'},ear)
+    element('path',{'d':EAR_SHAPE,'fill':'none','stroke':'#040713','stroke-width':'2.5','stroke-linejoin':'round'},ear)
 
     cheek_neck,cheek_report=cheek_neck_field(im,labels,indices)
     cheek_report['edgeRefinement']=cheek_edge_report
@@ -312,6 +298,12 @@ def build():
         clip_id=ident+'-cheek-neck-shape'
         clip=element('clipPath',{'id':clip_id,'clipPathUnits':'userSpaceOnUse'},defs)
         element('path',{'d':hidden_shapes[ident]},clip)
+        if ident=='face-underpaint':
+            # Reconstruct only the skin samples whose hair antialiasing moved
+            # onto the bang. Broadening the whole face contour would expose a
+            # rectangular skin patch on the far side of the swinging lock.
+            element('path',{'d':''.join(
+                f'M{x} {y}h1v1h-1z' for y,x in np.argwhere(fork_fill_mask))},clip)
         patch=element('g',{'data-surface':'cheek-neck','clip-path':f'url(#{clip_id})'},hidden_groups[ident])
         samples=defaultdict(list)
         for x,y,run_width,color in row_regions(cheek_neck,CHEEK_BOX):

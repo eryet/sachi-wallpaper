@@ -11,9 +11,9 @@
     708,
     970
   ],
-  "paths": 87879,
+  "paths": 87887,
   "merged_rectangles": 242265,
-  "bytes": 13430744,
+  "bytes": 13432876,
   "cutRefinement": {
     "revision": "hair-collar-pixel-cuts-1",
     "reassignedSourcePixels": 5457,
@@ -42,11 +42,11 @@
       462,
       665
     ],
-    "interpolatedPixels": 12837,
+    "interpolatedPixels": 12914,
     "nearestSampleFallbackPixels": 257,
     "method": "edge-aligned source colour interpolation",
     "edgeRefinement": {
-      "reassignedEdgePixels": 346,
+      "reassignedEdgePixels": 488,
       "unchangedSourceRGBA": true
     }
   },
@@ -59,8 +59,8 @@
         352,
         140
       ],
-      "source_pixels": 50721,
-      "paths": 7443
+      "source_pixels": 50737,
+      "paths": 7444
     },
     {
       "id": "neck",
@@ -70,8 +70,8 @@
         323,
         644
       ],
-      "source_pixels": 10004,
-      "paths": 3091
+      "source_pixels": 9953,
+      "paths": 3046
     },
     {
       "id": "face",
@@ -81,8 +81,8 @@
         293,
         472
       ],
-      "source_pixels": 95081,
-      "paths": 6348
+      "source_pixels": 94990,
+      "paths": 6286
     },
     {
       "id": "hair-crown",
@@ -147,8 +147,8 @@
         414,
         135
       ],
-      "source_pixels": 49344,
-      "paths": 8778
+      "source_pixels": 49643,
+      "paths": 9029
     },
     {
       "id": "hair-face-strand",
@@ -169,8 +169,8 @@
         535,
         424
       ],
-      "source_pixels": 4249,
-      "paths": 1429
+      "source_pixels": 4134,
+      "paths": 1332
     },
     {
       "id": "ear-inner",
@@ -180,8 +180,8 @@
         544,
         421
       ],
-      "source_pixels": 2547,
-      "paths": 818
+      "source_pixels": 2489,
+      "paths": 778
     },
     {
       "id": "hair-clip",
